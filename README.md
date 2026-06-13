@@ -13,9 +13,10 @@ Built and maintained by @techwithgul. New additions drop alongside the Claude fo
 ## Structure
 
 ```
-agents/     — Claude agent configurations and instruction files
-plugins/    — MCP plugin setups and configs
-skills/     — Reusable Claude skills
+agents/         — Claude agent configurations and instruction files
+plugins/        — MCP plugin setups and configs
+skills/         — Reusable Claude skills
+viral-prompts/  — Copy-paste-ready viral ChatGPT image prompts
 ```
 
 ---
