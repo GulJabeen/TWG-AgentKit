@@ -1,0 +1,38 @@
+5 AI Prompts to Optimize Your LinkedIn Profile (2026)
+Copy into ChatGPT, Claude, or Gemini. Each prompt forces the AI to ask questions before writing — that's what kills generic output.
+
+Why these beat the usual prompts (2026 reality)
+LinkedIn now ranks by semantic relevance + exact-match keywords, not keyword stuffing.
+Headlines: "Title | Outcome | Context" format wins (up to ~220 chars).
+About section: only the first ~200 characters show before "See more" — the hook lives there.
+Experience: recruiters scan quantified impact, not duties.
+Always add a {TARGET ROLE} variable and make the AI ask before writing.
+1️⃣ Headline that ranks in recruiter search
+Act as a top LinkedIn personal-branding strategist. Write me 5 headline options for the role of {TARGET ROLE}. Use the format Title | Measurable Outcome | Industry/Context and stay under 220 characters. Front-load the exact job title recruiters search for, include 2–3 hard keywords, and make each option distinct (one bold, one metric-led, one niche). Before writing, ask me 3 questions about my role, results, and target industry. Here's my current profile: [Paste Profile]
+
+2️⃣ About section that hooks in the first 2 lines
+Rewrite my LinkedIn About section for a {TARGET ROLE}. Critical rule: the first 200 characters must hook the reader before the "See more" cut-off — open with the problem I solve, not "I am a…". Then tell a short, human story covering my strengths, 3 quantified achievements, and the results I create. Write in first person, keep it skimmable, and weave in keywords naturally (semantic relevance, not stuffing). End with a soft CTA. Ask me for my 3 biggest wins first. Profile: [Paste Profile]
+
+3️⃣ Experience section recruiters actually read
+Rewrite my Experience section to be achievement-focused and ATS-friendly for {TARGET ROLE}. Convert every duty into an impact bullet using the formula Action verb → what I did → quantified result (e.g. "Grew X by 340% in 18 months"). Where I'm missing numbers, ask me for them instead of inventing them. Surface role-specific keywords recruiters filter by. Profile: [Paste Profile]
+
+4️⃣ Full keyword + optimization plan (from real job posts)
+Act as a LinkedIn SEO expert. First, ask me to paste 2–3 real job descriptions for {TARGET ROLE}. Extract the 15 most-repeated exact-match keywords and skills. Then audit my whole profile and give me: (1) a section-by-section optimization plan, (2) exactly where to place each keyword, (3) my top 5 skills to pin, (4) 3 content ideas to post, and (5) a prioritized 7-day action checklist. Profile: [Paste Profile]
+
+5️⃣ Recruiter X-ray (brutal audit + rewrite)
+Act as a recruiter hiring for {TARGET ROLE}. Audit my profile and tell me honestly:
+
+Would I appear in your search results — and why/why not?
+Which exact-match keywords am I missing?
+What's the first thing you notice (good and bad)?
+What single change would make you message me?
+Then rewrite my headline and About section to maximize inbound recruiter messages. Profile: [Paste Profile]
+
+AI isn't the advantage. Knowing what to ask is. Save this for your next profile refresh — and send it to someone job-hunting.
+
+Sources
+https://www.careerflow.ai/blog/best-linkedin-chatgpt-prompts
+https://enhancv.com/blog/chatgpt-for-linkedin/
+https://resumevera.com/blogs/linkedin-profile-optimization-guide-2026
+https://linkedinrank.com/blogs/linkedin-search-algorithm-explained
+https://ophyai.com/blog/resume-writing/linkedin-profile-optimization-job-search
