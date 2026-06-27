@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TWG-AgentKit — Guides & Tools by @techwithgul</title>
+<meta name="description" content="Agents, plugins, skills, and plain-English AI guides by @techwithgul. The free way to do what the paid tools charge for.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#5B2C8D; --lavender:#C5A8E0; --lav-soft:#F3EBF9;
+    --cream:#F4EDE2; --cream-card:#FDFAF6; --beige:#E8DDD2;
+    --ink:#1A1815; --muted:#6E6860; --line:#EDE7DF;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Inter',sans-serif; color:var(--ink);
+    background:radial-gradient(1200px 600px at 50% -10%, var(--lav-soft), var(--cream) 55%) no-repeat, var(--cream);
+    min-height:100vh; line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:920px; margin:0 auto; padding:0 22px}
+
+  header{text-align:center; padding:74px 0 40px}
+  .badge{
+    display:inline-block; font-size:12px; font-weight:700; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--purple); background:var(--lav-soft);
+    border:1px solid var(--lavender); padding:6px 14px; border-radius:999px; margin-bottom:22px;
+  }
+  h1{font-family:'Fraunces',serif; font-weight:700; font-size:clamp(34px,6vw,56px); line-height:1.05; letter-spacing:-.01em}
+  h1 .accent{color:var(--purple)}
+  .tagline{margin:18px auto 0; max-width:560px; font-size:18px; color:var(--muted)}
+  .handle{margin-top:20px; font-weight:600}
+  .handle a{color:var(--purple); text-decoration:none}
+  .handle a:hover{text-decoration:underline}
+
+  .section-label{
+    font-family:'Inter',sans-serif; font-size:13px; font-weight:800; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--muted); margin:54px 0 18px; text-align:center;
+  }
+
+  .cards{display:grid; gap:18px}
+  .card{
+    display:block; text-decoration:none; color:inherit;
+    background:var(--cream-card); border:1px solid var(--line); border-radius:18px;
+    padding:26px 28px; transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  }
+  .card:hover{transform:translateY(-3px); box-shadow:0 14px 36px rgba(91,44,141,.13); border-color:var(--lavender)}
+  .card .top{display:flex; align-items:center; gap:12px; margin-bottom:8px; flex-wrap:wrap}
+  .card h3{font-family:'Fraunces',serif; font-weight:700; font-size:23px; line-height:1.2}
+  .pill{font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--purple); background:var(--lav-soft); padding:3px 10px; border-radius:999px}
+  .pill.live{color:#2D6A4F; background:#E4F2EA}
+  .card p{color:var(--muted); font-size:15.5px; margin-top:4px}
+  .card .go{margin-top:14px; font-weight:700; color:var(--purple); font-size:14.5px}
+  .card .go::after{content:" →"; transition:margin .18s ease}
+  .card:hover .go::after{margin-left:4px}
+
+  .repo{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px}
+  .chip{
+    background:var(--cream-card); border:1px solid var(--line); border-radius:14px;
+    padding:18px 18px; text-decoration:none; color:inherit; transition:border-color .18s ease, transform .18s ease;
+  }
+  .chip:hover{border-color:var(--lavender); transform:translateY(-2px)}
+  .chip .k{font-family:'Fraunces',serif; font-weight:700; font-size:17px}
+  .chip .v{font-size:13.5px; color:var(--muted); margin-top:3px}
+
+  footer{text-align:center; padding:60px 0 70px; color:var(--muted); font-size:14.5px}
+  footer a{color:var(--purple); text-decoration:none; font-weight:600}
+  footer a:hover{text-decoration:underline}
+  .links{display:flex; gap:22px; justify-content:center; flex-wrap:wrap; margin-bottom:16px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <span class="badge">Built for non-tech humans</span>
+    <h1>AI tools &amp; guides,<br>the <span class="accent">free</span> way.</h1>
+    <p class="tagline">Agents, plugins, skills, and plain-English guides — built to do what the paid tools charge for, explained so anyone can follow.</p>
+    <p class="handle">by <a href="https://www.instagram.com/techwithgul.ai">@techwithgul</a></p>
+  </header>
+
+  <div class="section-label">📚 Guides</div>
+  <div class="cards">
+
+    <a class="card" href="guides/ai-summer-2026-guide.html">
+      <div class="top">
+        <h3>AI Summer for Kids</h3>
+        <span class="pill live">Live page</span>
+      </div>
+      <p>A parent's complete guide to AI for ages 5–17 — what AI is, 5 steps to start today, activities by age group, a dedicated ASD-friendly section, summer courses, every tool explained, and online-safety guidance. No technical background needed.</p>
+      <div class="go">Read the guide</div>
+    </a>
+
+    <a class="card" href="https://github.com/GulJabeen/TWG-AgentKit/blob/main/guides/claude-tag-free-alternative.md">
+      <div class="top">
+        <h3>Claude Tag — the free alternative</h3>
+        <span class="pill">Markdown</span>
+      </div>
+      <p>Anthropic's paid "tag @Claude in Slack to do work" feature — and how to get the same capability for $0 by self-hosting a Slack bot and pointing it at a free model.</p>
+      <div class="go">Read the guide</div>
+    </a>
+
+  </div>
+
+  <div class="section-label">🧰 In this kit</div>
+  <div class="repo">
+    <a class="chip" href="https://github.com/GulJabeen/TWG-AgentKit/tree/main/agents"><div class="k">Agents</div><div class="v">Claude agent configs</div></a>
+    <a class="chip" href="https://github.com/GulJabeen/TWG-AgentKit/tree/main/plugins"><div class="k">Plugins</div><div class="v">MCP setups</div></a>
+    <a class="chip" href="https://github.com/GulJabeen/TWG-AgentKit/tree/main/skills"><div class="k">Skills</div><div class="v">Reusable Claude skills</div></a>
+    <a class="chip" href="https://github.com/GulJabeen/TWG-AgentKit/tree/main/viral-prompts"><div class="k">Viral Prompts</div><div class="v">Copy-paste image prompts</div></a>
+  </div>
+
+  <footer>
+    <div class="links">
+      <a href="https://www.instagram.com/techwithgul.ai">Instagram</a>
+      <a href="https://github.com/GulJabeen/TWG-AgentKit">GitHub Repo</a>
+      <a href="https://github.com/GulJabeen/claude-for-non-tech">Claude for Non-Tech</a>
+    </div>
+    Built &amp; maintained by @techwithgul · New drops alongside the Claude for Non-Tech series.
+  </footer>
+
+</div>
+</body>
+</html>
