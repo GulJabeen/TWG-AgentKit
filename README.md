@@ -17,6 +17,7 @@ agents/         — Claude agent configurations and instruction files
 plugins/        — MCP plugin setups and configs
 skills/         — Reusable Claude skills
 viral-prompts/  — Copy-paste-ready viral ChatGPT image prompts
+guides/         — Plain-English "free way to do the paid thing" guides
 ```
 
 ---
