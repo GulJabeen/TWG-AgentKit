@@ -8,10 +8,11 @@ Plain-English, no-fluff guides by [@techwithgul](https://www.instagram.com/techw
 
 | Guide | Format | What it covers |
 |---|---|---|
-| [AI Summer for Kids — A Parent's Complete Guide](ai-summer-2026-guide.html) | HTML | A non-technical parent's guide to AI for ages 5–17 — what AI is, 5 steps to start today, activities by age group, a dedicated ASD-friendly section, summer courses, every tool explained, and online-safety guidance. |
+| [AI Summer for Kids — A Parent's Complete Guide](https://guljabeen.github.io/TWG-AgentKit/guides/ai-summer-2026-guide.html) | HTML | A non-technical parent's guide to AI for ages 5–17 — what AI is, 5 steps to start today, activities by age group, a dedicated ASD-friendly section, summer courses, every tool explained, and online-safety guidance. |
 | [Claude Tag — the free alternative](claude-tag-free-alternative.md) | Markdown | Anthropic's paid "tag @Claude in Slack to do work" feature — and how to get the same thing for $0 by self-hosting. |
 
-> 💡 The HTML guides are best viewed rendered — download the file and open it in a browser, or use a [GitHub HTML preview](https://htmlpreview.github.io/?https://github.com/GulJabeen/TWG-AgentKit/blob/main/guides/ai-summer-2026-guide.html).
+> 💡 The AI Summer guide opens as a fully rendered web page (hosted via GitHub Pages):
+> **https://guljabeen.github.io/TWG-AgentKit/guides/ai-summer-2026-guide.html**
 
 ---
 
