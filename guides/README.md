@@ -10,7 +10,7 @@ Plain-English, no-fluff guides by [@techwithgul](https://www.instagram.com/techw
 |---|---|---|
 | [AI Summer for Kids — A Parent's Complete Guide](https://guljabeen.github.io/TWG-AgentKit/guides/ai-summer-2026-guide.html) | HTML | A non-technical parent's guide to AI for ages 5–17 — what AI is, 5 steps to start today, activities by age group, a dedicated ASD-friendly section, summer courses, every tool explained, and online-safety guidance. |
 | [Claude Tag — the free alternative](claude-tag-free-alternative.md) | Markdown | Anthropic's paid "tag @Claude in Slack to do work" feature — and how to get the same thing for $0 by self-hosting. |
-| [How to Land a Remote Job](https://guljabeen.github.io/TWG-AgentKit/guides/how-to-land-a-remote-job.html) | HTML + [Markdown](how-to-land-a-remote-job.md) | The exact playbook @techwithgul used — optimize LinkedIn to get found, where to find real remote jobs (incl. AI/tech boards), 5 AI profile prompts, the "message the CEO directly" secret weapon, whether LinkedIn Premium is worth it, and a 7-day action plan. |
+| [How to Land a Remote Job](https://guljabeen.github.io/TWG-AgentKit/guides/how-to-land-a-remote-job.html) | HTML | The exact playbook @techwithgul used — optimize LinkedIn to get found, where to find real remote jobs (incl. AI/tech boards), 5 AI profile prompts, the "message the CEO directly" secret weapon, whether LinkedIn Premium is worth it, and a 7-day action plan. |
 
 > 💡 The AI Summer guide opens as a fully rendered web page (hosted via GitHub Pages):
 > **https://guljabeen.github.io/TWG-AgentKit/guides/ai-summer-2026-guide.html**
