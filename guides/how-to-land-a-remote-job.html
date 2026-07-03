@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Land a Remote Job — @techwithgul</title>
+<style>
+  :root{
+    --bg:#0a0a0f; --panel:#12121a; --panel2:#171722; --line:#26263a;
+    --text:#e9e9f2; --muted:#9a9ab0; --white:#ffffff;
+    --accent:#7c5cff; --accent2:#00e6c3; --gold:#ffcf5c; --danger:#ff6b6b;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    padding:0 16px 80px;
+  }
+  .wrap{max-width:760px;margin:0 auto}
+
+  /* HERO */
+  .hero{
+    text-align:center;
+    padding:70px 24px 54px;
+    margin:0 -16px 40px;
+    background:
+      radial-gradient(900px 400px at 50% -10%, rgba(124,92,255,.28), transparent 60%),
+      radial-gradient(700px 400px at 90% 10%, rgba(0,230,195,.14), transparent 60%),
+      var(--panel);
+    border-bottom:1px solid var(--line);
+  }
+  .kicker{
+    display:inline-block;
+    font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--accent2);font-weight:700;
+    border:1px solid rgba(0,230,195,.35);
+    padding:6px 14px;border-radius:999px;margin-bottom:22px;
+  }
+  h1{
+    font-size:clamp(32px,6vw,52px);
+    line-height:1.05;font-weight:800;letter-spacing:-.02em;
+    color:var(--white);margin-bottom:18px;
+  }
+  h1 .grad{
+    background:linear-gradient(100deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .sub{font-size:18px;color:var(--muted);max-width:560px;margin:0 auto 26px}
+  .byline{font-size:15px;color:var(--text);font-weight:600}
+  .byline a{color:var(--accent2);text-decoration:none}
+
+  /* INTRO CALLOUT */
+  .intro{
+    background:var(--panel2);border:1px solid var(--line);
+    border-radius:16px;padding:26px 28px;margin-bottom:44px;
+    font-size:16.5px;
+  }
+  .intro strong{color:var(--white)}
+
+  /* SECTIONS */
+  section{margin-bottom:50px}
+  .eyebrow{
+    font-size:13px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent);font-weight:700;margin-bottom:8px;
+  }
+  h2{
+    font-size:clamp(24px,4.5vw,32px);font-weight:800;letter-spacing:-.01em;
+    color:var(--white);margin-bottom:8px;line-height:1.15;
+  }
+  h3{font-size:19px;font-weight:700;color:var(--white);margin:26px 0 8px}
+  p{margin-bottom:14px;color:var(--text)}
+  .muted{color:var(--muted)}
+
+  /* MOVE NUMBER BADGE */
+  .move-head{display:flex;align-items:center;gap:16px;margin-bottom:14px}
+  .move-num{
+    flex:0 0 auto;width:54px;height:54px;border-radius:14px;
+    display:grid;place-items:center;font-size:24px;font-weight:800;color:var(--white);
+    background:linear-gradient(135deg,var(--accent),#4a2fd6);
+    box-shadow:0 8px 26px rgba(124,92,255,.35);
+  }
+  .move-head h2{margin-bottom:0}
+
+  /* QUOTE */
+  blockquote{
+    border-left:4px solid var(--accent2);
+    background:linear-gradient(90deg,rgba(0,230,195,.08),transparent);
+    padding:16px 20px;border-radius:0 12px 12px 0;
+    font-size:18px;color:var(--white);font-weight:600;margin:20px 0;
+  }
+
+  /* CHECK LIST */
+  ul.checks{list-style:none;margin:6px 0 6px}
+  ul.checks li{position:relative;padding:8px 0 8px 34px;border-bottom:1px solid rgba(255,255,255,.04)}
+  ul.checks li:last-child{border-bottom:0}
+  ul.checks li::before{
+    content:"✓";position:absolute;left:0;top:8px;
+    width:22px;height:22px;border-radius:6px;
+    background:rgba(0,230,195,.15);color:var(--accent2);
+    display:grid;place-items:center;font-size:13px;font-weight:800;
+  }
+  ul.plain{list-style:none;margin:6px 0}
+  ul.plain li{padding:6px 0 6px 22px;position:relative}
+  ul.plain li::before{content:"→";position:absolute;left:0;color:var(--accent);font-weight:800}
+
+  /* CARDS for job boards */
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+  .card{
+    background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+  }
+  .card h4{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent2);margin-bottom:8px;font-weight:700}
+  .card ul{list-style:none}
+  .card li{font-size:14.5px;padding:3px 0;color:var(--text)}
+  .card li b{color:var(--white)}
+
+  /* HIGHLIGHT / SECRET WEAPON */
+  .secret{
+    background:
+      radial-gradient(600px 220px at 20% 0%, rgba(255,207,92,.14), transparent 60%),
+      var(--panel2);
+    border:1px solid rgba(255,207,92,.35);
+    border-radius:18px;padding:30px 28px;
+  }
+  .secret .move-num{background:linear-gradient(135deg,var(--gold),#f59e0b);box-shadow:0 8px 26px rgba(255,207,92,.3);color:#1a1400}
+  .fire{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:800;margin-bottom:8px}
+
+  /* TEMPLATE BOX */
+  .template{
+    background:#0c0c14;border:1px dashed var(--accent);border-radius:12px;
+    padding:20px 22px;margin:16px 0;font-size:15.5px;color:#d7d7ea;
+  }
+  .template .lbl{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:10px;display:block}
+  .template em{color:var(--accent2);font-style:normal}
+
+  .rule{display:flex;gap:10px;align-items:flex-start;padding:7px 0}
+  .rule .y{color:var(--accent2);font-weight:800}
+  .rule .n{color:var(--danger);font-weight:800}
+
+  /* TABLE */
+  table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15px;background:var(--panel);border-radius:12px;overflow:hidden}
+  th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--line)}
+  th{background:var(--panel2);color:var(--white);font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+  td:first-child{font-weight:700;color:var(--accent2);white-space:nowrap}
+  tr:last-child td{border-bottom:0}
+
+  .danger-note{color:var(--danger);font-weight:600}
+
+  /* FINAL CTA */
+  .final{
+    text-align:center;background:
+      radial-gradient(700px 300px at 50% 120%, rgba(124,92,255,.25), transparent 60%),
+      var(--panel);
+    border:1px solid var(--line);border-radius:20px;padding:44px 30px;margin-top:20px;
+  }
+  .final h2{margin-bottom:14px}
+  .final .big{font-size:20px;color:var(--text);max-width:520px;margin:0 auto 22px}
+  .btn{
+    display:inline-block;background:linear-gradient(100deg,var(--accent),var(--accent2));
+    color:#0a0a0f;font-weight:800;font-size:16px;text-decoration:none;
+    padding:14px 30px;border-radius:999px;margin-top:6px;
+  }
+  .sign{margin-top:26px;color:var(--muted);font-size:14px}
+  .sign a{color:var(--accent2);text-decoration:none;font-weight:700}
+
+  hr{border:0;border-top:1px solid var(--line);margin:44px 0}
+
+  /* MY STORY */
+  .story{
+    background:
+      radial-gradient(500px 200px at 15% 0%, rgba(255,207,92,.10), transparent 60%),
+      var(--panel);
+    border:1px solid var(--line);border-left:4px solid var(--gold);
+    border-radius:16px;padding:28px 30px;margin-bottom:50px;
+  }
+  .story p{font-size:16.5px}
+
+  /* AI PROMPTS */
+  .prompt{
+    background:#0c0c14;border:1px solid var(--line);border-radius:12px;
+    padding:0 0 4px;margin:14px 0;overflow:hidden;
+  }
+  .prompt .p-head{
+    display:flex;align-items:center;gap:10px;
+    background:var(--panel2);padding:12px 18px;border-bottom:1px solid var(--line);
+  }
+  .prompt .p-num{
+    width:26px;height:26px;flex:0 0 auto;border-radius:7px;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    display:grid;place-items:center;font-size:14px;font-weight:800;color:#0a0a0f;
+  }
+  .prompt .p-title{font-weight:700;color:var(--white);font-size:15.5px}
+  .prompt .p-body{padding:16px 18px;font-size:14.5px;color:#cfcfe2;line-height:1.6}
+  .prompt .p-body b{color:var(--white)}
+  .prompt .var{color:var(--accent2);font-weight:700}
+  .prompts-note{
+    text-align:center;color:var(--gold);font-weight:700;font-size:15px;
+    margin:18px 0 4px;
+  }
+
+  @media (max-width:560px){
+    .cards{grid-template-columns:1fr}
+    .move-num{width:46px;height:46px;font-size:20px}
+  }
+  @media print{
+    body{background:#fff;color:#111}
+    .hero,.intro,.card,.secret,.template,.final,table{background:#fff!important}
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <span class="kicker">Your free guide · you commented REMOTE 🚀</span>
+  <h1>How to Land a <span class="grad">Remote Job</span></h1>
+  <p class="sub">The step-by-step playbook I actually used — including the one move most people are too scared to try.</p>
+  <p class="byline">by <a href="https://instagram.com/techwithgul.ai">@techwithgul</a></p>
+</div>
+
+<div class="wrap">
+
+  <div class="intro">
+    This isn't "just be positive and network!" fluff. This is the exact system: <strong>where to look, how to get found, and the one thing that got me hired</strong> after everyone else's application got ignored. Read it in 15 minutes. Start today. No insider connections required. Let's go. 👇
+  </div>
+
+  <!-- MY STORY -->
+  <section class="story">
+    <div class="eyebrow" style="color:var(--gold)">First — my story 👋</div>
+    <h2>How I actually landed my remote job</h2>
+    <p>Here's the part people assume is the "secret": I did a <strong>Master's in AI in Germany</strong>, then worked at <strong>Capgemini in Cologne for three years</strong>. On paper I had the degree, the international experience, the big-name company. The "perfect" CV.</p>
+    <p>Then I moved back to Pakistan — and I hit a wall.</p>
+    <p>I spent <strong>a whole year</strong> searching. A year of applying, waiting, refreshing my inbox, hearing nothing back. Sit with that: <em>even with a foreign Master's and three years at a global firm, the "apply and wait" method didn't work.</em> Not for a month. For a year.</p>
+    <p>So I stopped waiting. I found a remote role on <strong>LinkedIn</strong> and applied through the posting first — but this time I didn't stop there. <strong>I found the CEO of the company and messaged them directly.</strong> I didn't beg. I introduced myself, told them exactly what I'd done, showed them my actual work, and told them why I could help <em>their</em> company specifically.</p>
+    <p><strong>They replied.</strong> And what turned that reply into an offer wasn't my degree — it was the <em>conversation</em>. I kept the communication genuine, human, and consistent with the CEO. That back-and-forth built the trust. That's what got me hired.</p>
+    <p>That one message turned "one application in the pile" into a real relationship — and that relationship turned into the remote job that changed my life. The one that lets me work from home, a café, or the beach, as long as I've got good Wi-Fi. 🌊💻</p>
+    <p>Since then I've done it again and again. And I'm going to show you <em>exactly</em> how, step by step. This isn't theory — it's the exact system I used.</p>
+    <blockquote>A perfect CV got me a year of silence. One direct message to the CEO got me the job. Credentials open the door — but <em>reaching out</em> walks you through it.</blockquote>
+  </section>
+
+  <!-- MINDSET -->
+  <section>
+    <div class="eyebrow">First · the mindset 🧠</div>
+    <h2>Stop applying and waiting</h2>
+    <p>Most people fire off 50 applications into a black hole, refresh their email, and wonder why nothing happens. Here's the 2026 truth:</p>
+    <blockquote>The job doesn't go to the most qualified person. It goes to the most <em>visible</em> and <em>proactive</em> person.</blockquote>
+    <p>Recruiters get hundreds of applicants — and AI now does the first pass before a human even looks. Your job isn't just to apply. It's to become <strong>impossible to ignore</strong>. Four moves do exactly that:</p>
+    <ul class="plain">
+      <li><b>Get FOUND</b> — your LinkedIn hunts for you</li>
+      <li><b>Find the right jobs</b> — the real boards, not scams</li>
+      <li><b>Apply so you actually get noticed</b></li>
+      <li><b>The Secret Weapon</b> — message the decision-maker directly 🔥</li>
+    </ul>
+  </section>
+
+  <hr>
+
+  <!-- MOVE 1 -->
+  <section>
+    <div class="move-head">
+      <div class="move-num">1</div>
+      <h2>Turn your LinkedIn into a magnet 🧲</h2>
+    </div>
+    <p>Before you apply anywhere, fix this. Recruiters <em>search</em> LinkedIn for people. Set up right, jobs come to <strong>you</strong>.</p>
+
+    <h3>Your headline is a billboard, not a job title</h3>
+    <p class="muted">❌ <s>Software Engineer</s></p>
+    <p>✅ <strong>ML/AI Engineer | Python · LLMs · RAG · MLOps | Shipping AI features that cut cost &amp; latency | Open to Remote</strong></p>
+    <p>Put <b>"Open to Remote"</b> in the headline text itself — many recruiters filter by keywords right there, not just the green frame.</p>
+
+    <h3>Set up your profile to rank</h3>
+    <ul class="checks">
+      <li>Turn on <b>"Open to Work"</b> — set to <b>Recruiters only</b> if you don't want your current boss to see</li>
+      <li>Pin your <b>3 strongest skills</b> to the top; add <b>10–20 relevant</b> ones (not 50 random)</li>
+      <li>Take LinkedIn <b>skill assessments</b> — verified badges rank you ~30% higher in recruiter search</li>
+      <li>Mirror the <b>exact words</b> from job posts you want ("remote," "async," "Python," "LLM," "RAG," "AWS," "MLOps")</li>
+      <li>Post <b>once a week</b> — even 3 sentences. Active profiles show higher in search, even to passive recruiters</li>
+    </ul>
+
+    <h3>🤖 Steal my 5 AI prompts to write it all for you</h3>
+    <p>Don't stare at a blank profile. Paste these into <b>ChatGPT, Claude, or Gemini</b> — each one forces the AI to <em>ask you questions first</em>, which is what kills the generic, robotic output. Swap in <span class="var">{TARGET ROLE}</span> and paste your profile.</p>
+
+    <div class="prompt">
+      <div class="p-head"><span class="p-num">1</span><span class="p-title">Headline that ranks in recruiter search</span></div>
+      <div class="p-body">Act as a top LinkedIn personal-branding strategist. Write me <b>5 headline options</b> for the role of <span class="var">{TARGET ROLE}</span>. Use the format <b>Title | Measurable Outcome | Industry/Context</b> and stay under 220 characters. Front-load the exact job title recruiters search for, include 2–3 hard keywords, and make each option distinct (one bold, one metric-led, one niche). Before writing, ask me 3 questions about my role, results, and target industry. Here's my current profile: <b>[Paste Profile]</b></div>
+    </div>
+
+    <div class="prompt">
+      <div class="p-head"><span class="p-num">2</span><span class="p-title">About section that hooks in the first 2 lines</span></div>
+      <div class="p-body">Rewrite my LinkedIn About section for a <span class="var">{TARGET ROLE}</span>. Critical rule: the <b>first 200 characters</b> must hook the reader before the "See more" cut-off — open with the problem I solve, not "I am a…". Then tell a short, human story covering my strengths, 3 quantified achievements, and the results I create. Write in first person, keep it skimmable, and weave in keywords naturally (semantic relevance, not stuffing). End with a soft CTA. Ask me for my 3 biggest wins first. Profile: <b>[Paste Profile]</b></div>
+    </div>
+
+    <div class="prompt">
+      <div class="p-head"><span class="p-num">3</span><span class="p-title">Experience section recruiters actually read</span></div>
+      <div class="p-body">Rewrite my Experience section to be achievement-focused and ATS-friendly for <span class="var">{TARGET ROLE}</span>. Convert every duty into an impact bullet using the formula <b>Action verb → what I did → quantified result</b> (e.g. "Grew X by 340% in 18 months"). Where I'm missing numbers, ask me for them instead of inventing them. Surface role-specific keywords recruiters filter by. Profile: <b>[Paste Profile]</b></div>
+    </div>
+
+    <div class="prompt">
+      <div class="p-head"><span class="p-num">4</span><span class="p-title">Full keyword + optimization plan (from real job posts)</span></div>
+      <div class="p-body">Act as a LinkedIn SEO expert. First, ask me to paste <b>2–3 real job descriptions</b> for <span class="var">{TARGET ROLE}</span>. Extract the 15 most-repeated exact-match keywords and skills. Then audit my whole profile and give me: (1) a section-by-section optimization plan, (2) exactly where to place each keyword, (3) my top 5 skills to pin, (4) 3 content ideas to post, and (5) a prioritized 7-day action checklist. Profile: <b>[Paste Profile]</b></div>
+    </div>
+
+    <div class="prompt">
+      <div class="p-head"><span class="p-num">5</span><span class="p-title">Recruiter X-ray (brutal audit + rewrite)</span></div>
+      <div class="p-body">Act as a recruiter hiring for <span class="var">{TARGET ROLE}</span>. Audit my profile and tell me honestly: Would I appear in your search results — and why/why not? Which exact-match keywords am I missing? What's the first thing you notice (good and bad)? What single change would make you message me? Then rewrite my headline and About section to maximize inbound recruiter messages. Profile: <b>[Paste Profile]</b></div>
+    </div>
+
+    <p class="prompts-note">💡 AI isn't the advantage. Knowing what to ask is.</p>
+  </section>
+
+  <hr>
+
+  <!-- MOVE 2 -->
+  <section>
+    <div class="move-head">
+      <div class="move-num">2</div>
+      <h2>Where to actually find remote jobs 🌍</h2>
+    </div>
+    <p>Stop scrolling random Facebook groups. These are the legit, remote-first boards in 2026:</p>
+
+    <div class="cards">
+      <div class="card">
+        <h4>Best all-rounders</h4>
+        <ul>
+          <li><b>We Work Remotely</b> — huge remote community</li>
+          <li><b>Working Nomads</b> — global, daily digests</li>
+          <li><b>Remote OK</b> — tech &amp; startups, great filters</li>
+          <li><b>JustRemote</b> — curated global roles</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>Higher-paying / curated</h4>
+        <ul>
+          <li><b>Himalayas</b> — best-designed, salary upfront</li>
+          <li><b>Remote100K</b> — vetted $100k+ roles</li>
+          <li><b>FlexJobs</b> — paid, but scam-free</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>Startups (fast hiring)</h4>
+        <ul>
+          <li><b>Wellfound</b> — founders + AI/ML startups</li>
+          <li><b>YC "Work at a Startup"</b> — tons of AI hires</li>
+          <li><b>Dynamite Jobs</b> — 100% remote-first only</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>AI / tech-specific 🤖</h4>
+        <ul>
+          <li><b>ai-jobs.net</b> — AI/ML/data, salary-transparent</li>
+          <li><b>Hugging Face Jobs</b> — labs + open-source AI</li>
+          <li><b>HN "Who is Hiring?"</b> — founders post directly</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>Pro tips</h4>
+        <ul>
+          <li>Set <b>email alerts</b> on 3–4 boards</li>
+          <li>Apply <b>within 24–48h</b> — early gets seen</li>
+          <li>Use multiple boards to widen the net</li>
+        </ul>
+      </div>
+    </div>
+    <p class="danger-note">🚩 Scam check: if they ask for money, want bank details "for equipment," or only interview over WhatsApp with no company footprint — walk away. Real remote jobs never charge you.</p>
+  </section>
+
+  <hr>
+
+  <!-- MOVE 3 -->
+  <section>
+    <div class="move-head">
+      <div class="move-num">3</div>
+      <h2>Apply so you actually get noticed 📩</h2>
+    </div>
+    <p>Your application is a 6-second pitch. Make it count:</p>
+    <ul class="checks">
+      <li><b>Tailor the top of your CV</b> to each role — match the title + 3–4 key phrases from the post (AI screeners look for these)</li>
+      <li><b>One page. Results, not duties</b> — "Cut inference latency 40% &amp; API cost 3× with a distilled LLM," not "responsible for machine learning"</li>
+      <li><b>Short cover note, not an essay</b> — who you are, one win, why <em>this</em> company, that you'd love to talk</li>
+      <li><b>Have a portfolio link</b> — a <b>GitHub</b> with 2–3 real projects, Hugging Face, Kaggle, or a short demo/Loom beats "references on request." For AI/dev roles, shipped code they can click is the strongest signal</li>
+    </ul>
+    <p>But most people <em>stop here</em>. That's exactly why they don't get hired. The next move is the one that changed everything for me. 👇</p>
+  </section>
+
+  <!-- MOVE 4 · SECRET WEAPON -->
+  <section class="secret">
+    <div class="fire">🔥 The Secret Weapon</div>
+    <div class="move-head">
+      <div class="move-num">4</div>
+      <h2>Message the decision-maker directly</h2>
+    </div>
+    <p>Here's how I <em>actually</em> landed jobs:</p>
+    <blockquote>After I applied, I didn't wait. I found the CEO or hiring manager on LinkedIn — and messaged them directly. I told them who I was, showed them my work, and told them exactly why I'd be great for the role.</blockquote>
+    <p>That's the move 95% of people are too nervous to make. It's why my application jumped from "one of 300" to "the one they remember." A thoughtful, specific message from a real person who <strong>did their homework</strong> stands out instantly. You're no longer a line in a spreadsheet — you're a human they've already talked to.</p>
+
+    <h3>How to do it, step by step</h3>
+    <ul class="plain">
+      <li><b>Apply first</b> (normally, through the posting). The DM is the follow-up, not a replacement.</li>
+      <li><b>Find the right person:</b> startup → the <b>Founder/CEO</b>; bigger company → the <b>Hiring Manager</b> or <b>Head of [your department]</b></li>
+      <li><b>Send a short, specific, human message</b> — never "please give me a job"</li>
+    </ul>
+
+    <div class="template">
+      <span class="lbl">The message that works</span>
+      Hi [Name], I just applied for the <em>[Role]</em> position and wanted to reach out directly because I'm genuinely excited about what <em>[Company]</em> is building — <em>[one specific, real detail: a product, a launch, a post they wrote]</em>.<br><br>
+      A quick bit about me: I <em>[one relevant win — "built a RAG chatbot that cut support tickets 30%," "shipped an ML pipeline handling 1M+ requests/day," "fine-tuned an LLM for X"]</em>. A couple of examples / my GitHub here: <em>[link]</em>.<br><br>
+      I'd love to show how I could help with <em>[specific thing the role needs]</em>. Even 10 minutes would mean a lot. Thank you! 🙏
+    </div>
+
+    <h3>The rules that make it work</h3>
+    <div class="rule"><span class="y">✅</span><div><b>Reference something specific and real</b> about them or the company — this one thing multiplies your reply rate</div></div>
+    <div class="rule"><span class="y">✅</span><div><b>Keep it short</b> — 5 seconds to read; an essay gets scrolled past</div></div>
+    <div class="rule"><span class="y">✅</span><div><b>Show, don't beg</b> — lead with a result + link, not "I really need this job"</div></div>
+    <div class="rule"><span class="y">✅</span><div><b>Follow up once</b>, gently, after 3–5 days — then let it go</div></div>
+    <div class="rule"><span class="n">❌</span><div>Don't copy-paste the same DM to 50 people — personalize the first line every time</div></div>
+    <p style="margin-top:16px"><strong>Do this for every job you apply to.</strong> Applied to 10? Send 10 messages. This one habit out-performs 100 blind applications.</p>
+  </section>
+
+  <hr>
+
+  <!-- BONUS -->
+  <section>
+    <div class="eyebrow">Bonus 🎯</div>
+    <h2>Make LinkedIn hunt for you</h2>
+    <p>The best remote jobs are filled <em>before</em> they're posted — through referrals. Get on that list:</p>
+    <ul class="checks">
+      <li><b>Follow the companies you want</b> — you'll see openings first</li>
+      <li><b>Engage genuinely</b> with posts from people who work there — a thoughtful comment beats a cold DM</li>
+      <li><b>Ask for referrals right:</b> "Hey [Name], I'm applying for [Role] at [Company] — would you be open to referring me or sharing tips?" Referred candidates get interviewed far more often</li>
+      <li><b>Grow to 500+ connections</b> — more reach = more inbound</li>
+    </ul>
+  </section>
+
+  <hr>
+
+  <!-- LINKEDIN PREMIUM -->
+  <section>
+    <div class="eyebrow">Is it worth it? 💳</div>
+    <h2>LinkedIn Premium — buy it or skip it?</h2>
+    <p>Short answer: <strong>it can be worth it — but only for a focused sprint, not as a forever subscription.</strong> Here's the honest breakdown so you don't waste money.</p>
+
+    <h3>What actually helps for job hunting</h3>
+    <ul class="checks">
+      <li><b>InMail credits</b> — the big one. Message people you're <em>not</em> connected to (that CEO or hiring manager) without waiting for a connection request. For the "message the decision-maker" move, this feature pays for itself</li>
+      <li><b>"Who viewed your profile"</b> — see which recruiters are checking you out, so you can follow up while you're fresh in their mind</li>
+      <li><b>How you rank vs. other applicants</b> — tells you if you're competitive <em>before</em> you waste time on a role</li>
+      <li><b>Company &amp; salary insights</b> — headcount trends, who's hiring, salary ranges — so you target right and don't lowball yourself</li>
+      <li><b>LinkedIn Learning</b> — free courses + certificates you can add to your profile</li>
+    </ul>
+
+    <h3>🎯 The honest truth</h3>
+    <div class="rule"><span class="y">✅</span><div><b>You do NOT need Premium to get hired.</b> Everything in this guide — including DMing the CEO — works on a <b>free account</b> (you can DM connections, and requests to founders are often accepted). Premium just makes outreach faster and higher-volume</div></div>
+    <div class="rule"><span class="y">✅</span><div><b>Worth it when</b> you're in active hunting mode, sending lots of cold InMails to decision-makers every week — that's when the credits and insights earn their keep</div></div>
+    <div class="rule"><span class="n">❌</span><div><b>Not worth it when</b> you're casually browsing or applying to 1–2 jobs a week and not using the InMail credits — you'll pay monthly for features you don't touch</div></div>
+
+    <h3>💡 My recommendation</h3>
+    <ul class="plain">
+      <li><b>Start free.</b> Optimize your profile, apply, and send connection requests with a note to the people you want to reach</li>
+      <li><b>Then use the free 1-month trial</b> during one intense hunting month — fire off applications <em>and</em> direct messages daily, and squeeze every InMail credit out of it</li>
+      <li><b>Cancel before it renews</b> unless it's clearly landing you conversations. Set a reminder the day you start the trial</li>
+    </ul>
+    <blockquote>Premium is a <em>speed boost</em>, not a requirement. A free account plus the courage to reach out beats Premium plus sitting quietly. Don't buy the tool if you won't do the work.</blockquote>
+  </section>
+
+  <hr>
+
+  <!-- 7 DAY PLAN -->
+  <section>
+    <div class="eyebrow">Your 7-day action plan 🗓️</div>
+    <h2>You don't need months. You need to start.</h2>
+    <table>
+      <tr><th>Day</th><th>Do this</th></tr>
+      <tr><td>Day 1</td><td>Rewrite your LinkedIn headline + turn on "Open to Work"</td></tr>
+      <tr><td>Day 2</td><td>Add 15 keyword skills, take 2 skill assessments, cut CV to one page</td></tr>
+      <tr><td>Day 3</td><td>Sign up for 4 remote job boards + set email alerts</td></tr>
+      <tr><td>Day 4</td><td>Apply to your first 5 roles</td></tr>
+      <tr><td>Day 5</td><td>Message the CEO/hiring manager for each of those 5 roles 🔥</td></tr>
+      <tr><td>Day 6</td><td>Post one short thing on LinkedIn + follow 10 target companies</td></tr>
+      <tr><td>Day 7</td><td>Follow up on messages, apply to 5 more, repeat</td></tr>
+    </table>
+    <p>Then keep the loop running: <strong>apply → DM the decision-maker → follow up → post weekly.</strong> Consistency beats luck every time.</p>
+  </section>
+
+  <!-- FINAL -->
+  <div class="final">
+    <div class="eyebrow" style="color:var(--accent2)">The one thing to remember</div>
+    <h2>Everyone else applies and waits.</h2>
+    <p class="big">You're going to apply <em>and</em> reach out. That's the whole difference. The person who messages the CEO with a real, specific, confident note is the person who gets remembered — and remembered people get hired.</p>
+    <p style="color:var(--white);font-weight:700;font-size:18px">Your office should be better than your screensaver. Go get it. 🌊💻</p>
+    <a class="btn" href="https://instagram.com/techwithgul.ai">Follow @techwithgul for more →</a>
+    <p class="sign">Found this useful? Follow <a href="https://instagram.com/techwithgul.ai">@techwithgul</a> for more on landing remote work, using AI, and building a career from anywhere. Got a question? Reply to this — I read every message. 💬</p>
+  </div>
+
+</div>
+</body>
+</html>
