@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#0E0D0A"><title>Run Your Own Meta Ads — TechWithGul Starter Guide</title><style>html,body{margin:0;padding:0}</style></head><body>
+<style>
+  /* ============ TOKENS ============ */
+  :root{
+    color-scheme: light dark;
+    --font-display:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    --font-body:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --font-mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+
+    /* light (base) */
+    --bg:#FBFAF6;
+    --surface:#FFFFFF;
+    --surface-2:#F5F1E8;
+    --border:#E7E1D3;
+    --border-strong:#D8CFB9;
+    --text:#1E1A12;
+    --heading:#110E07;
+    --muted:#6C6454;
+    --accent:#E2A200;
+    --accent-bright:#F5B400;
+    --accent-ink:#241B00;
+    --link:#9A6B00;
+    --good:#1E9E6A; --good-bg:#E8F6EF;
+    --bad:#C6482A;  --bad-bg:#FBEBE4;
+    --tip:#8A6300;  --tip-bg:#FBF1D6;
+    --shadow:0 1px 2px rgba(20,16,5,.06),0 10px 34px rgba(20,16,5,.07);
+    --shadow-sm:0 1px 2px rgba(20,16,5,.08);
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#0E0D0A;
+      --surface:#17150F;
+      --surface-2:#211D14;
+      --border:#2C2820;
+      --border-strong:#3B362A;
+      --text:#F1ECE0;
+      --heading:#FFFFFF;
+      --muted:#A79E8B;
+      --accent:#FFC01E;
+      --accent-bright:#FFCB3D;
+      --accent-ink:#241B00;
+      --link:#FFCE4D;
+      --good:#3DCB92; --good-bg:rgba(61,203,146,.12);
+      --bad:#F0724E;  --bad-bg:rgba(240,114,78,.13);
+      --tip:#FFC93C;  --tip-bg:rgba(255,201,30,.09);
+      --shadow:0 1px 2px rgba(0,0,0,.45),0 14px 44px rgba(0,0,0,.40);
+      --shadow-sm:0 1px 2px rgba(0,0,0,.5);
+    }
+  }
+  :root[data-theme="light"]{
+    --bg:#FBFAF6; --surface:#FFFFFF; --surface-2:#F5F1E8; --border:#E7E1D3;
+    --border-strong:#D8CFB9; --text:#1E1A12; --heading:#110E07; --muted:#6C6454;
+    --accent:#E2A200; --accent-bright:#F5B400; --accent-ink:#241B00; --link:#9A6B00;
+    --good:#1E9E6A; --good-bg:#E8F6EF; --bad:#C6482A; --bad-bg:#FBEBE4;
+    --tip:#8A6300; --tip-bg:#FBF1D6;
+    --shadow:0 1px 2px rgba(20,16,5,.06),0 10px 34px rgba(20,16,5,.07);
+    --shadow-sm:0 1px 2px rgba(20,16,5,.08);
+  }
+  :root[data-theme="dark"]{
+    --bg:#0E0D0A; --surface:#17150F; --surface-2:#211D14; --border:#2C2820;
+    --border-strong:#3B362A; --text:#F1ECE0; --heading:#FFFFFF; --muted:#A79E8B;
+    --accent:#FFC01E; --accent-bright:#FFCB3D; --accent-ink:#241B00; --link:#FFCE4D;
+    --good:#3DCB92; --good-bg:rgba(61,203,146,.12); --bad:#F0724E; --bad-bg:rgba(240,114,78,.13);
+    --tip:#FFC93C; --tip-bg:rgba(255,201,30,.09);
+    --shadow:0 1px 2px rgba(0,0,0,.45),0 14px 44px rgba(0,0,0,.40);
+    --shadow-sm:0 1px 2px rgba(0,0,0,.5);
+  }
+
+  /* ============ BASE ============ */
+  *{box-sizing:border-box}
+  .mag{
+    background:var(--bg); color:var(--text);
+    font-family:var(--font-body);
+    font-size:18px; line-height:1.72; letter-spacing:-.003em;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mag :where(h1,h2,h3,h4){font-family:var(--font-display); color:var(--heading); text-wrap:balance; letter-spacing:-.02em; line-height:1.12;}
+  .mag p{margin:0 0 1.05em}
+  .mag a{color:var(--link); text-underline-offset:3px; text-decoration-thickness:1.5px;}
+  .mag strong{color:var(--heading); font-weight:700}
+  .mag ::selection{background:var(--accent); color:var(--accent-ink)}
+
+  .scrollbar{position:fixed; inset:0 0 auto 0; height:3px; background:transparent; z-index:50}
+  .scrollbar > i{display:block; height:100%; width:0; background:var(--accent-bright);
+    box-shadow:0 0 10px var(--accent-bright);}
+
+  .wrap{max-width:760px; margin-inline:auto; padding:0 24px}
+  .measure{max-width:680px; margin-inline:auto}
+
+  /* ============ HEADER ============ */
+  .head{padding:64px 0 40px; position:relative; overflow:hidden}
+  .head::before{content:""; position:absolute; top:-160px; left:50%; transform:translateX(-50%);
+    width:640px; height:360px; border-radius:50%;
+    background:radial-gradient(closest-side, color-mix(in srgb,var(--accent) 22%, transparent), transparent 70%);
+    filter:blur(10px); pointer-events:none; z-index:0}
+  .head > *{position:relative; z-index:1}
+  .brand{display:flex; align-items:center; gap:12px; margin-bottom:34px}
+  .brand-badge{background:#fff; border-radius:13px; padding:9px 13px; display:inline-flex;
+    box-shadow:var(--shadow-sm); border:1px solid rgba(0,0,0,.06)}
+  .brand-badge img{height:26px; width:auto; display:block}
+  .brand-hand{font-family:var(--font-mono); font-size:13px; color:var(--muted); letter-spacing:.02em}
+  .eyebrow{font-family:var(--font-mono); font-size:12.5px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--accent); font-weight:600; margin-bottom:18px}
+  .head h1{font-size:clamp(38px,7.5vw,60px); font-weight:800; margin:0 0 .35em}
+  .head h1 .gold{color:var(--accent)}
+  .lede{font-size:clamp(19px,2.6vw,22px); color:var(--muted); max-width:33ch; margin:0}
+  .meta-row{display:flex; flex-wrap:wrap; gap:10px 8px; margin-top:30px}
+  .chip{font-family:var(--font-mono); font-size:12.5px; padding:7px 13px; border-radius:999px;
+    border:1px solid var(--border-strong); color:var(--muted); background:var(--surface)}
+  .chip b{color:var(--heading); font-weight:600}
+
+  /* ============ SECTIONS ============ */
+  section{padding:14px 0}
+  .kicker{font-family:var(--font-mono); font-size:12.5px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--accent); font-weight:600; margin:0 0 10px}
+  h2{font-size:clamp(27px,4.4vw,34px); font-weight:800; margin:.2em 0 .5em}
+  h3{font-size:20px; font-weight:700; margin:1.6em 0 .5em}
+  hr.rule{border:0; height:1px; background:var(--border); margin:44px 0}
+
+  /* who this is for */
+  .checklist{list-style:none; padding:0; margin:0; display:grid; gap:12px}
+  .checklist li{display:flex; gap:12px; align-items:flex-start}
+  .checklist li::before{content:"✓"; color:var(--accent-ink); background:var(--accent-bright);
+    font-weight:800; width:24px; height:24px; border-radius:7px; display:grid; place-items:center;
+    flex:0 0 auto; font-size:14px; margin-top:3px}
+
+  /* outcome grid */
+  .outcomes{display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:6px}
+  .outcome{background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:18px 18px 16px;
+    box-shadow:var(--shadow-sm)}
+  .outcome .n{font-family:var(--font-mono); color:var(--accent); font-size:13px; font-weight:600}
+  .outcome p{margin:.4em 0 0; font-size:15.5px; line-height:1.5}
+
+  /* TOC */
+  .toc{background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:8px; box-shadow:var(--shadow)}
+  .toc a{display:flex; align-items:baseline; gap:14px; padding:13px 16px; border-radius:11px;
+    color:var(--text); text-decoration:none; transition:background .15s}
+  .toc a:hover{background:var(--surface-2)}
+  .toc a .tn{font-family:var(--font-mono); font-size:13px; color:var(--accent); font-weight:600; width:22px; flex:0 0 auto}
+  .toc a .tt{font-weight:600; color:var(--heading)}
+  .toc a .td{color:var(--muted); font-size:14.5px; margin-left:auto; text-align:right}
+  .toc a + a{border-top:1px solid var(--border)}
+  .toc a.bonus{background:color-mix(in srgb,var(--accent) 8%, transparent)}
+  .toc a.bonus:hover{background:color-mix(in srgb,var(--accent) 14%, transparent)}
+  .toc a.bonus .tn{color:var(--accent-bright); font-size:15px}
+  .toc a.bonus .tt{color:var(--accent)}
+
+  /* numbered step */
+  .step{display:flex; gap:20px; align-items:flex-start; margin-top:40px}
+  .step .num{flex:0 0 auto; width:46px; height:46px; border-radius:13px;
+    background:var(--accent-bright); color:var(--accent-ink);
+    font-family:var(--font-display); font-weight:800; font-size:22px; display:grid; place-items:center;
+    box-shadow:var(--shadow-sm)}
+  .step .body{flex:1 1 auto; min-width:0}
+  .step .body h2{margin-top:2px}
+
+  /* callouts */
+  .call{border-radius:14px; padding:16px 18px; margin:22px 0; border:1px solid;
+    display:flex; gap:13px; align-items:flex-start; font-size:16px; line-height:1.58}
+  .call .ic{flex:0 0 auto; width:26px; height:26px; border-radius:8px; display:grid; place-items:center;
+    font-weight:800; font-size:15px; margin-top:1px}
+  .call p{margin:0}
+  .call .lbl{display:block; font-family:var(--font-mono); font-size:11.5px; letter-spacing:.1em;
+    text-transform:uppercase; font-weight:700; margin-bottom:3px}
+  .call.tip{background:var(--tip-bg); border-color:color-mix(in srgb,var(--tip) 32%, transparent)}
+  .call.tip .ic{background:var(--accent-bright); color:var(--accent-ink)}
+  .call.tip .lbl{color:var(--tip)}
+  .call.do{background:var(--good-bg); border-color:color-mix(in srgb,var(--good) 34%, transparent)}
+  .call.do .ic{background:var(--good); color:#fff}
+  .call.do .lbl{color:var(--good)}
+  .call.avoid{background:var(--bad-bg); border-color:color-mix(in srgb,var(--bad) 34%, transparent)}
+  .call.avoid .ic{background:var(--bad); color:#fff}
+  .call.avoid .lbl{color:var(--bad)}
+
+  /* structure diagram */
+  .diagram{background:var(--surface-2); border:1px solid var(--border); border-radius:18px; padding:22px; margin:26px 0}
+  .lvl{background:var(--surface); border:1px solid var(--border-strong); border-radius:13px; padding:14px 16px}
+  .lvl + .lvl{margin-top:14px}
+  .lvl .tag{font-family:var(--font-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+    font-weight:700; color:var(--accent); display:block; margin-bottom:3px}
+  .lvl .lname{font-family:var(--font-display); font-weight:800; font-size:18px; color:var(--heading)}
+  .lvl .ldesc{font-size:14.5px; color:var(--muted); margin-top:4px}
+  .nest{margin-top:12px; padding-left:16px; border-left:2px dashed var(--border-strong); display:grid; gap:10px}
+  .connect{text-align:center; color:var(--accent); font-size:18px; line-height:1; margin:2px 0}
+  .mini{display:flex; gap:8px; flex-wrap:wrap}
+  .mini span{font-family:var(--font-mono); font-size:12px; background:var(--surface-2);
+    border:1px solid var(--border); border-radius:8px; padding:5px 9px; color:var(--text)}
+
+  /* table */
+  .tablewrap{overflow-x:auto; margin:22px 0; border:1px solid var(--border); border-radius:14px; box-shadow:var(--shadow-sm)}
+  table{border-collapse:collapse; width:100%; min-width:460px; font-size:15px}
+  th,td{text-align:left; padding:13px 16px; border-bottom:1px solid var(--border)}
+  thead th{background:var(--surface-2); font-family:var(--font-mono); font-size:12px; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--muted); font-weight:700}
+  tbody tr:last-child td{border-bottom:0}
+  td b{color:var(--heading)}
+  td .pill{font-family:var(--font-mono); font-size:12px; padding:3px 9px; border-radius:999px;
+    background:var(--accent-bright); color:var(--accent-ink); font-weight:700}
+  .tabnum{font-variant-numeric:tabular-nums}
+
+  /* mock ads UI */
+  .adui{background:var(--surface); border:1px solid var(--border-strong); border-radius:16px; overflow:hidden;
+    margin:24px 0; box-shadow:var(--shadow); font-family:var(--font-mono)}
+  .adui-bar{background:var(--surface-2); padding:11px 16px; display:flex; align-items:center; gap:8px;
+    border-bottom:1px solid var(--border); font-size:12.5px; color:var(--muted)}
+  .adui-bar b{color:var(--accent); font-weight:700}
+  .adui-row{display:grid; grid-template-columns:1.6fr .8fr .8fr .8fr; gap:0; font-size:13px}
+  .adui-row > div{padding:12px 16px; border-bottom:1px solid var(--border)}
+  .adui-head > div{color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.06em; background:var(--surface-2)}
+  .adui-row:last-child > div{border-bottom:0}
+  .adui-row .r{text-align:right; font-variant-numeric:tabular-nums}
+  .adui .g{color:var(--good)} .adui .a{color:var(--accent)}
+
+  /* glossary */
+  .gloss{display:grid; gap:2px; border:1px solid var(--border); border-radius:14px; overflow:hidden; box-shadow:var(--shadow-sm)}
+  .gloss dt{font-family:var(--font-display); font-weight:800; color:var(--heading); font-size:16px;
+    background:var(--surface); padding:14px 18px 2px}
+  .gloss dd{margin:0; padding:0 18px 14px; background:var(--surface); color:var(--muted); font-size:15px; line-height:1.55}
+  .gloss dd b{color:var(--text); font-family:var(--font-mono); font-size:13px}
+
+  /* mistakes */
+  .mistakes{list-style:none; padding:0; margin:18px 0; display:grid; gap:12px}
+  .mistakes li{background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--bad);
+    border-radius:0 12px 12px 0; padding:14px 18px; font-size:16px}
+  .mistakes li b{color:var(--heading)}
+
+  /* AI section */
+  .aisec{background:
+      radial-gradient(140% 110% at 0% 0%, color-mix(in srgb,var(--accent) 13%, transparent), transparent 52%),
+      var(--surface-2);
+    border:1px solid var(--border-strong); border-radius:20px; padding:30px 26px; margin:26px 0}
+  .airobot{display:inline-flex; align-items:center; gap:9px; font-family:var(--font-mono); font-size:12.5px;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin-bottom:10px}
+  .airobot .bot{width:26px;height:26px;border-radius:8px;background:var(--accent-bright);display:grid;place-items:center;font-size:15px}
+  .aisec h2{margin:.1em 0 .45em}
+  .ai-block{margin-top:28px}
+  .ai-block > h3{margin:0 0 .35em; display:flex; gap:10px; align-items:baseline; flex-wrap:wrap}
+  .ai-block > h3 .tag{font-family:var(--font-mono); font-size:11.5px; color:var(--accent-ink);
+    background:var(--accent-bright); padding:2px 8px; border-radius:6px; font-weight:800; letter-spacing:.02em}
+  .prompt{background:var(--surface); border:1px solid var(--border-strong); border-radius:13px; overflow:hidden;
+    margin:14px 0; box-shadow:var(--shadow-sm)}
+  .prompt-bar{background:var(--surface-2); padding:9px 14px; display:flex; align-items:center; gap:8px;
+    border-bottom:1px solid var(--border); font-family:var(--font-mono); font-size:11.5px; letter-spacing:.05em;
+    text-transform:uppercase; color:var(--muted)}
+  .prompt-bar .dot{width:9px;height:9px;border-radius:50%;background:var(--accent-bright); flex:0 0 auto}
+  .prompt-bar b{color:var(--accent); font-weight:700}
+  .prompt pre{margin:0; padding:15px 16px; font-family:var(--font-mono); font-size:13px; line-height:1.62;
+    color:var(--text); white-space:pre-wrap; word-break:break-word; overflow-x:auto}
+  .prompt pre .fill{color:var(--accent); font-weight:700}
+  .aisec .toc a.bonus{}
+
+  /* CTA */
+  .cta{margin:56px 0 20px; background:
+      radial-gradient(120% 120% at 100% 0%, color-mix(in srgb,var(--accent) 20%, transparent), transparent 55%),
+      var(--surface);
+    border:1px solid var(--border-strong); border-radius:22px; padding:38px 32px; box-shadow:var(--shadow);
+    position:relative; overflow:hidden}
+  .cta .eyebrow{margin-bottom:12px}
+  .cta h2{font-size:clamp(26px,4.4vw,34px); margin:0 0 .4em; max-width:20ch}
+  .cta p{color:var(--muted); max-width:52ch}
+  .modules{list-style:none; padding:0; margin:20px 0 26px; display:grid; gap:10px}
+  .modules li{display:flex; gap:12px; align-items:flex-start; font-size:15.5px}
+  .modules li::before{content:"→"; color:var(--accent); font-weight:800; flex:0 0 auto}
+  .modules li b{color:var(--heading)}
+  .btnrow{display:flex; flex-wrap:wrap; gap:12px; align-items:center}
+  .btn{display:inline-flex; align-items:center; gap:9px; background:var(--accent-bright); color:var(--accent-ink);
+    font-family:var(--font-display); font-weight:800; font-size:17px; text-decoration:none;
+    padding:15px 26px; border-radius:13px; box-shadow:var(--shadow-sm); transition:transform .12s, filter .12s}
+  .btn:hover{transform:translateY(-1px); filter:brightness(1.05)}
+  .btn-alt{color:var(--link); font-weight:600; text-decoration:none; font-size:15.5px}
+  .btn-alt:hover{text-decoration:underline}
+  .placeholder-note{margin-top:16px; font-family:var(--font-mono); font-size:12px; color:var(--muted);
+    background:var(--surface-2); border:1px dashed var(--border-strong); border-radius:10px; padding:10px 13px}
+
+  /* footer */
+  .foot{border-top:1px solid var(--border); margin-top:50px; padding:34px 0 70px; color:var(--muted); font-size:14px}
+  .foot b{color:var(--heading)}
+  .foot .fbrand{display:flex; align-items:center; gap:10px; margin-bottom:14px}
+  .foot .brand-badge img{height:22px}
+
+  @media (max-width:560px){
+    .mag{font-size:17px}
+    .outcomes{grid-template-columns:1fr}
+    .step{gap:14px}
+    .step .num{width:40px; height:40px; font-size:19px}
+    .adui-row{grid-template-columns:1.4fr .9fr .9fr}
+    .adui-row .hidecol{display:none}
+    .toc a .td{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){ *{scroll-behavior:auto !important} .btn{transition:none} }
+
+  /* print / PDF */
+  @media print{
+    :root{--bg:#fff;--surface:#fff;--surface-2:#f6f4ee;--text:#000;--heading:#000;--muted:#333;
+      --border:#ccc;--border-strong:#aaa;--shadow:none;--shadow-sm:none}
+    .scrollbar{display:none}
+    .head::before,.cta{background:#fff}
+    .call,.diagram,.toc,.outcome,.adui,.gloss,.mistakes li,.cta{break-inside:avoid; box-shadow:none}
+    .step{break-inside:avoid}
+    a{color:#000}
+  }
+</style>
+
+<div class="scrollbar"><i id="prog"></i></div>
+
+<div class="mag">
+<div class="wrap">
+
+  <!-- ================= HEADER ================= -->
+  <header class="head">
+    <div class="brand">
+      <span class="brand-badge"><img src="data:image/png;base64,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" alt="TechWithGul logo"></span>
+      <span class="brand-hand">@techwithgul.ai</span>
+    </div>
+    <p class="eyebrow">A TechWithGul Starter Guide</p>
+    <h1>Run Your Own <span class="gold">Meta Ads</span></h1>
+    <p class="lede">The complete beginner's guide to Facebook &amp; Instagram Ads Manager — with AI as your co-pilot, and no marketer required.</p>
+    <div class="meta-row">
+      <span class="chip">📖 <b>15-min</b> read</span>
+      <span class="chip">🎯 Level: <b>Complete beginner</b></span>
+      <span class="chip">📅 Updated <b>Jul 2026</b></span>
+    </div>
+  </header>
+
+  <!-- ================= INTRO ================= -->
+  <section class="measure">
+    <p>If you run a business and someone else runs your ads, you're renting a skill you could <em>own</em>. Every time you want to change a caption, test a new photo, or push a weekend offer, you wait on someone — and you pay for it.</p>
+    <p><strong>This guide changes that.</strong> By the end you'll understand exactly how Meta's Ads Manager works — the same tool the "experts" use — and you'll be ready to launch your first campaign yourself.</p>
+
+    <h3>Read this if…</h3>
+    <ul class="checklist">
+      <li>You've been paying someone to "boost posts" and you're not sure it's even working.</li>
+      <li>Words like <em>Pixel</em>, <em>CBO</em>, <em>ROAS</em>, and <em>learning phase</em> make your eyes glaze over.</li>
+      <li>You want more bookings, enquiries, or sales — from Facebook &amp; Instagram — without guessing.</li>
+      <li>You'd rather learn the skill once than outsource it forever.</li>
+    </ul>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ================= OUTCOMES ================= -->
+  <section>
+    <p class="kicker">What you'll walk away with</p>
+    <h2>Five things you'll be able to do</h2>
+    <div class="outcomes">
+      <div class="outcome"><span class="n">01</span><p>Set up the accounts Meta requires — correctly, once — so nothing gets rejected later.</p></div>
+      <div class="outcome"><span class="n">02</span><p>Understand the 3-layer structure that <em>every single ad</em> is built on.</p></div>
+      <div class="outcome"><span class="n">03</span><p>Pick the right objective — the one decision where most beginners quietly waste money.</p></div>
+      <div class="outcome"><span class="n">04</span><p>Build and launch your first real campaign, targeting the right people.</p></div>
+      <div class="outcome"><span class="n">05</span><p>Read the numbers and honestly know whether it's working — or needs fixing.</p></div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ================= TOC ================= -->
+  <section>
+    <p class="kicker">The path</p>
+    <h2>Your 7 steps, in order</h2>
+    <p class="measure" style="color:var(--muted)">Meta Ads feels huge because it's showing you everything at once. It isn't complicated — it's just <em>layered</em>. Follow these in order and it clicks.</p>
+    <nav class="toc">
+      <a href="#step1"><span class="tn">1</span><span class="tt">Set up your foundation</span><span class="td">Accounts &amp; payment</span></a>
+      <a href="#step2"><span class="tn">2</span><span class="tt">Learn the anatomy of an ad</span><span class="td">Campaign → Ad Set → Ad</span></a>
+      <a href="#step3"><span class="tn">3</span><span class="tt">Choose your objective</span><span class="td">The money decision</span></a>
+      <a href="#step4"><span class="tn">4</span><span class="tt">Define your audience</span><span class="td">Who sees it</span></a>
+      <a href="#step5"><span class="tn">5</span><span class="tt">Set budget &amp; schedule</span><span class="td">How much, how long</span></a>
+      <a href="#step6"><span class="tn">6</span><span class="tt">Build the creative</span><span class="td">Image, copy, button</span></a>
+      <a href="#step7"><span class="tn">7</span><span class="tt">Launch &amp; read the numbers</span><span class="td">Is it working?</span></a>
+      <a class="bonus" href="#ai"><span class="tn">★</span><span class="tt">Bonus: Let AI run point</span><span class="td">Your unfair advantage</span></a>
+    </nav>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ================= MINDSET ================= -->
+  <section class="measure">
+    <p class="kicker">First, one mindset shift</p>
+    <h2>"Boost Post" vs. Ads Manager</h2>
+    <p>That blue <strong>Boost</strong> button under your posts is Meta's "easy mode." It's fine for warming up a page — but it hides almost every control that actually makes ads profitable. It's like driving a car that only has an accelerator.</p>
+    <p><strong>Ads Manager</strong> (<span style="font-family:var(--font-mono);font-size:15px">business.facebook.com</span>) is the real cockpit. Same platform, full control: proper objectives, precise audiences, budgets, testing, and reporting. This guide lives here — because this is where you stop guessing.</p>
+    <div class="call tip">
+      <span class="ic">i</span>
+      <p><span class="lbl">Plain English</span>A <em>marketer</em> isn't selling you magic — they're selling you access to Ads Manager plus the judgment to use it. You're about to learn both.</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ================= STEP 1 ================= -->
+  <div class="step" id="step1">
+    <div class="num">1</div>
+    <div class="body">
+      <p class="kicker">Foundation</p>
+      <h2>Set up your foundation</h2>
+      <p>Before a single ad runs, Meta needs a few pieces connected. Do this once and never think about it again. You'll need:</p>
+      <ul class="checklist">
+        <li>A <strong>Facebook Page</strong> for your business (not your personal profile).</li>
+        <li>An <strong>Instagram business/professional account</strong>, connected to that Page.</li>
+        <li><strong>Meta Business Suite</strong> — your home base at <span style="font-family:var(--font-mono);font-size:14px">business.facebook.com</span>.</li>
+        <li>An <strong>Ad Account</strong> (created inside Business Suite → Settings).</li>
+        <li>A <strong>payment method</strong> — a debit/credit card enabled for international online payments.</li>
+      </ul>
+      <div class="call do">
+        <span class="ic">✓</span>
+        <p><span class="lbl">Do this</span>Connect your Instagram to your Facebook Page <em>first</em>. It lets one ad run on both apps at once — double the reach for the same effort.</p>
+      </div>
+      <div class="call avoid">
+        <span class="ic">!</span>
+        <p><span class="lbl">Avoid</span>Running ads straight off a brand-new Page with zero posts. Post 5–8 real photos first so people who click through don't land on an empty profile.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= STEP 2 ================= -->
+  <div class="step" id="step2">
+    <div class="num">2</div>
+    <div class="body">
+      <p class="kicker">The core concept</p>
+      <h2>Learn the anatomy of an ad</h2>
+      <p>This is the one idea that makes everything else make sense. Every ad you'll ever run has <strong>three layers</strong>, nested inside each other like folders:</p>
+
+      <div class="diagram" role="img" aria-label="Campaign contains Ad Sets, which contain Ads">
+        <div class="lvl">
+          <span class="tag">Layer 1 · The Campaign</span>
+          <span class="lname">🎯 What do you want?</span>
+          <div class="ldesc">You pick <em>one goal</em> here — messages, leads, sales, traffic. This is the objective.</div>
+          <div class="connect">↓ contains</div>
+          <div class="nest">
+            <div class="lvl">
+              <span class="tag">Layer 2 · The Ad Set</span>
+              <span class="lname">👥 Who sees it &amp; for how much?</span>
+              <div class="ldesc">Audience, location, age, budget, schedule, and where it shows all live here.</div>
+              <div class="connect">↓ contains</div>
+              <div class="nest">
+                <div class="lvl">
+                  <span class="tag">Layer 3 · The Ad</span>
+                  <span class="lname">🖼️ What do they actually see?</span>
+                  <div class="ldesc">The creative — your photo or video, the caption, and the button.</div>
+                  <div class="mini" style="margin-top:10px">
+                    <span>image / video</span><span>headline</span><span>caption</span><span>“Book Now” button</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p><strong>Read it top-down:</strong> the Campaign sets the <em>goal</em> → the Ad Set decides <em>who &amp; how much</em> → the Ad is <em>what they see</em>. Every menu in Ads Manager belongs to one of these three layers. Once you know which layer you're in, you're never lost.</p>
+      <div class="call tip">
+        <span class="ic">i</span>
+        <p><span class="lbl">Why this matters</span>You can put <em>several</em> Ad Sets in one Campaign (to test different audiences), and <em>several</em> Ads in one Ad Set (to test different photos). That's how testing works — same goal, different variables.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= STEP 3 ================= -->
+  <div class="step" id="step3">
+    <div class="num">3</div>
+    <div class="body">
+      <p class="kicker">The money decision</p>
+      <h2>Choose your objective</h2>
+      <p>When you click <strong>Create</strong>, the very first thing Meta asks is your objective. Choose wrong and Meta optimizes for the wrong outcome — you'll get lots of cheap likes but zero customers. Here's the plain-English version:</p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Objective</th><th>Meta shows your ad to people likely to…</th><th>Good for</th></tr></thead>
+          <tbody>
+            <tr><td><b>Awareness</b></td><td>just remember your brand</td><td>Getting known locally</td></tr>
+            <tr><td><b>Traffic</b></td><td>click through to a link</td><td>Sending people to a site/booking page</td></tr>
+            <tr><td><b>Engagement</b></td><td>message, like, or reply</td><td><span class="pill">DMs &amp; bookings</span></td></tr>
+            <tr><td><b>Leads</b></td><td>fill in a form (name, phone)</td><td><span class="pill">Enquiries</span></td></tr>
+            <tr><td><b>Sales</b></td><td>buy / convert on your site</td><td>Online stores, packages</td></tr>
+            <tr><td><b>App promotion</b></td><td>install an app</td><td>(skip — not for you)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="call do">
+        <span class="ic">✓</span>
+        <p><span class="lbl">If you sell a service (e.g. photography)</span>Start with <strong>Engagement → Messages</strong> (send people to your DMs/WhatsApp) or <strong>Leads</strong> (collect name + phone with a form). These turn strangers into conversations you can close.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= STEP 4 ================= -->
+  <div class="step" id="step4">
+    <div class="num">4</div>
+    <div class="body">
+      <p class="kicker">Targeting</p>
+      <h2>Define your audience</h2>
+      <p>This lives in the <strong>Ad Set</strong>. You're telling Meta who to show the ad to. Three levers matter most:</p>
+      <h3>1 · Location</h3>
+      <p>Drop a pin on your city and set a radius (e.g. everything within 25 km). If you serve one city, don't pay to reach the whole country.</p>
+      <h3>2 · Age &amp; gender</h3>
+      <p>Match your actual customer. Booking wedding shoots? Maybe 24–38. Newborn sessions? New parents. Don't guess wildly — think about who actually pays you.</p>
+      <h3>3 · Detailed targeting (interests)</h3>
+      <p>Layer in interests &amp; behaviours: <em>“Engaged (recently)”, “Wedding”, “Newlywed”, “Photography”</em>. Meta will find people matching those signals.</p>
+      <div class="call tip">
+        <span class="ic">i</span>
+        <p><span class="lbl">Warm vs. cold — remember this</span><strong>Cold</strong> = strangers (interest targeting). <strong>Warm</strong> = people who already know you (visited your profile, watched your reels, are on your contact list). Warm audiences convert far cheaper — you'll build these as <em>Custom</em> and <em>Lookalike</em> audiences once you have some traffic.</p>
+      </div>
+      <div class="call avoid">
+        <span class="ic">!</span>
+        <p><span class="lbl">Avoid</span>Making your audience tiny (10k people) with 15 stacked interests. Give Meta room — a broad, relevant audience (roughly 300k–2M for a city) usually beats a hyper-narrow one.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= STEP 5 ================= -->
+  <div class="step" id="step5">
+    <div class="num">5</div>
+    <div class="body">
+      <p class="kicker">Budget</p>
+      <h2>Set budget &amp; schedule</h2>
+      <p>Also in the Ad Set. Two choices:</p>
+      <ul class="checklist">
+        <li><strong>Daily budget</strong> — spend ~this much per day, runs continuously. Best for beginners.</li>
+        <li><strong>Lifetime budget</strong> — a fixed total spread across a start/end date. Best for a timed promo.</li>
+      </ul>
+      <div class="call do">
+        <span class="ic">✓</span>
+        <p><span class="lbl">How much to start</span>Begin small but not <em>too</em> small — enough for Meta to learn. A test budget of roughly <strong>$3–$7 / day</strong> (about <strong>Rs 900–2,000 / day</strong>) for 4–5 days gives real data without a scary bill. Judge results <em>after</em> that window, not on day one.</p>
+      </div>
+      <div class="call tip">
+        <span class="ic">i</span>
+        <p><span class="lbl">The "learning phase"</span>For the first few days Meta is experimenting to find your best buyers. Numbers bounce around — that's normal. <strong>Don't panic-edit.</strong> Every big change restarts the learning and wastes budget.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= STEP 6 ================= -->
+  <div class="step" id="step6">
+    <div class="num">6</div>
+    <div class="body">
+      <p class="kicker">Creative</p>
+      <h2>Build the creative</h2>
+      <p>This is the <strong>Ad</strong> layer — the only part your customer actually sees. Three ingredients:</p>
+      <h3>The visual</h3>
+      <p>Your best photo or a short (6–15s) video/reel. It has to stop the thumb. For a photographer, your portfolio <em>is</em> your ad — lead with your single strongest, most emotional shot.</p>
+      <h3>The copy (a simple formula)</h3>
+      <div class="call tip">
+        <span class="ic">i</span>
+        <p><span class="lbl">Hook → Value → Offer → CTA</span><strong>Hook:</strong> stop the scroll ("Your wedding is one day. The photos are forever."). <strong>Value:</strong> why you. <strong>Offer:</strong> what they get ("Book a July session, get a free album"). <strong>CTA:</strong> tell them exactly what to do ("Send us a message to check dates").</p>
+      </div>
+      <h3>The button (Call to Action)</h3>
+      <p>Pick the button that matches your objective: <em>Send Message</em>, <em>Book Now</em>, <em>Learn More</em>. It must line up with what your ad asked them to do.</p>
+      <div class="call do">
+        <span class="ic">✓</span>
+        <p><span class="lbl">Do this</span>Make <strong>2–4 versions</strong> of the ad (different photos or hooks) inside one Ad Set. Let Meta spend more on whichever wins. That's testing — and it's how good marketers get "lucky."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= STEP 7 ================= -->
+  <div class="step" id="step7">
+    <div class="num">7</div>
+    <div class="body">
+      <p class="kicker">Launch &amp; measure</p>
+      <h2>Launch, then read the numbers</h2>
+      <p>Hit <strong>Publish</strong>. Meta reviews the ad (usually minutes to a few hours), then it goes live. Now the real skill: reading the report. Here's what a healthy Ads Manager row looks like — and what each number means.</p>
+
+      <div class="adui" aria-label="Example Ads Manager results row">
+        <div class="adui-bar">📊 Ads Manager · <b>Results</b> · last 7 days</div>
+        <div class="adui-row adui-head">
+          <div>Ad</div><div class="r">Spent</div><div class="r hidecol">Cost / result</div><div class="r">CTR</div>
+        </div>
+        <div class="adui-row">
+          <div>Summer Sessions — Photo A</div><div class="r">Rs 6,300</div><div class="r hidecol g">Rs 90 / msg</div><div class="r g">2.4%</div>
+        </div>
+        <div class="adui-row">
+          <div>Summer Sessions — Photo B</div><div class="r">Rs 1,400</div><div class="r hidecol">Rs 310 / msg</div><div class="r">0.8%</div>
+        </div>
+      </div>
+      <p style="font-size:15px;color:var(--muted);margin-top:-6px">Photo A is winning: cheaper messages and a higher click-rate. A smart marketer would shift budget toward it and retire Photo B. <em>That's the whole game.</em></p>
+
+      <h3>The 6 numbers that actually matter</h3>
+      <p>Ignore the 40 columns Meta shows by default. Watch these:</p>
+    </div>
+  </div>
+
+  <dl class="gloss">
+    <dt>Reach <span style="font-weight:400;color:var(--muted);font-size:13px">/ Impressions</span></dt>
+    <dd><b>Reach</b> = how many <em>people</em> saw it. <b>Impressions</b> = total <em>times</em> shown (one person can see it many times).</dd>
+    <dt>CPM</dt>
+    <dd>Cost per 1,000 impressions. Basically the "price" Meta charges to show your ad. Rises if your audience is competitive.</dd>
+    <dt>CTR (click-through rate)</dt>
+    <dd>% of people who clicked. Your <b>creative's report card.</b> Below ~1% usually means the photo or hook is weak.</dd>
+    <dt>Cost per result (CPR)</dt>
+    <dd>The big one. What you pay for the thing you asked for — a message, a lead, a sale. Lower = better.</dd>
+    <dt>Frequency</dt>
+    <dd>Average times each person saw your ad. Over ~3–4 and people get bored/annoyed — time for fresh creative.</dd>
+    <dt>ROAS <span style="font-weight:400;color:var(--muted);font-size:13px">(for sales)</span></dt>
+    <dd>Return on ad spend. Rs 4 back for every Rs 1 spent = <b>4× ROAS</b>. The scoreboard for online stores.</dd>
+  </dl>
+
+  <hr class="rule">
+
+  <!-- ================= MISTAKES ================= -->
+  <section>
+    <p class="kicker">Save yourself the pain</p>
+    <h2>7 beginner mistakes to skip</h2>
+    <ul class="mistakes">
+      <li><b>Judging results on day one.</b> Give the learning phase 3–5 days before you decide anything.</li>
+      <li><b>Editing a live ad constantly.</b> Every edit restarts learning and burns budget. Set it, let it run.</li>
+      <li><b>Picking the wrong objective.</b> "Engagement" won't get you sales. Match the goal to the outcome you want.</li>
+      <li><b>One boring photo, no testing.</b> Always run 2–4 creatives and let the winner emerge.</li>
+      <li><b>Audience too narrow.</b> Stacking 15 interests starves Meta of data. Go broader than feels comfortable.</li>
+      <li><b>No clear offer or CTA.</b> "Nice photos 😊" isn't an ad. Tell them what to do and what they get.</li>
+      <li><b>Sending clicks to a dead profile.</b> Make sure your Page/Instagram looks alive before you pay for visitors.</li>
+    </ul>
+  </section>
+
+  <!-- ================= AI BONUS ================= -->
+  <section id="ai">
+    <div class="aisec">
+      <span class="airobot"><span class="bot">🤖</span> Bonus · Your unfair advantage</span>
+      <h2>Let AI run point</h2>
+      <p style="color:var(--muted); max-width:56ch">You don't need to be a copywriter, a data analyst, or a designer. In 2026, AI does the heavy lifting — you stay the decision-maker. Here are the four places it saves you the most time.</p>
+
+      <!-- 1 · Meta's own AI -->
+      <div class="ai-block">
+        <h3><span class="tag">1</span> Turn on Meta's built-in AI (Advantage+)</h3>
+        <p>The easiest win — it's <em>inside</em> Ads Manager and free. When you build your ad set, look for the <strong>Advantage+</strong> toggles and switch them on:</p>
+        <ul class="checklist">
+          <li><strong>Advantage+ audience</strong> — you give a suggestion, Meta's AI finds buyers you'd never think to target.</li>
+          <li><strong>Advantage+ placements</strong> — AI decides where to show each ad (Feed, Stories, Reels) for the cheapest result.</li>
+          <li><strong>Advantage+ creative</strong> — auto-tests small tweaks (brightness, crops, text) to see what performs.</li>
+        </ul>
+        <div class="call do">
+          <span class="ic">✓</span>
+          <p><span class="lbl">Do this</span>As a beginner, let Advantage+ do the optimizing while you focus on a strong photo and a clear offer. It genuinely levels the playing field with the agencies.</p>
+        </div>
+      </div>
+
+      <!-- 2 · AI writes copy -->
+      <div class="ai-block">
+        <h3><span class="tag">2</span> Let AI write your ad copy</h3>
+        <p>Never stare at a blank caption again. Paste this into <strong>ChatGPT or Claude</strong> and swap the <span style="color:var(--accent)">gold</span> bits for your details:</p>
+        <div class="prompt">
+          <div class="prompt-bar"><span class="dot"></span> Prompt · paste into <b>ChatGPT / Claude</b></div>
+          <pre>You are a direct-response ad copywriter. Write 3 Facebook &amp;
+Instagram ad variations for my business.
+
+Business: <span class="fill">[The Photo Moments — wedding &amp; event photography, Lahore]</span>
+Offer: <span class="fill">[Book a July session, get a free 20-page album]</span>
+Audience: <span class="fill">[engaged couples &amp; families, 24–40, in Lahore]</span>
+Goal: <span class="fill">[get them to send me a DM]</span>
+
+For each version give: a scroll-stopping hook (1 line),
+2–3 lines of body, and a clear call-to-action.
+Use the formula Hook → Value → Offer → CTA.
+Keep it warm and human, not salesy.</pre>
+        </div>
+      </div>
+
+      <!-- 3 · AI for targeting -->
+      <div class="ai-block">
+        <h3><span class="tag">3</span> Brainstorm targeting &amp; angles with AI</h3>
+        <p>Stuck on which interests to test (Step 4)? Let AI make the list for you:</p>
+        <div class="prompt">
+          <div class="prompt-bar"><span class="dot"></span> Prompt · targeting ideas</div>
+          <pre>I run <span class="fill">[wedding photography]</span> in <span class="fill">[Lahore]</span>. List 15 Meta Ads
+detailed-targeting interests &amp; behaviours I could test to reach
+likely customers, grouped by theme. Then give me 3 different
+audience "angles" I could test against each other.</pre>
+        </div>
+      </div>
+
+      <!-- 4 · AI for creative -->
+      <div class="ai-block">
+        <h3><span class="tag">4</span> Speed up creative with AI tools</h3>
+        <p>Your real photos stay the star — but AI helps you produce <em>more shots on goal</em>:</p>
+        <ul class="checklist">
+          <li>Generate <strong>5 hook/headline variations</strong> to test (ChatGPT/Claude).</li>
+          <li>Turn one great photo into <strong>motion</strong> or a short reel — AI video tools animate a still into a scroll-stopper.</li>
+          <li><strong>Clean backgrounds, upscale, and resize</strong> to every placement (Canva AI, or an AI upscaler) in seconds.</li>
+        </ul>
+      </div>
+
+      <!-- 5 · AI reads results -->
+      <div class="ai-block">
+        <h3><span class="tag">5</span> Let AI read your results for you</h3>
+        <p>The scary part — the numbers — becomes a conversation. After a few days, copy your report and paste it in:</p>
+        <div class="prompt">
+          <div class="prompt-bar"><span class="dot"></span> Prompt · analyze my ads</div>
+          <pre>Here are my Meta ad results after 5 days. In plain English,
+tell me what's working, what I should turn off, and the ONE
+change to make next. Be direct, don't hedge.
+
+<span class="fill">[paste: spend, results, cost per result, CTR, and frequency
+for each ad — straight from Ads Manager]</span></pre>
+        </div>
+      </div>
+
+      <div class="call avoid">
+        <span class="ic">!</span>
+        <p><span class="lbl">Keep it honest</span>AI <em>drafts</em> — you <em>decide</em>. Read every caption in your own voice before publishing, and never let an AI image fake a venue, a result, or a moment you didn't shoot. Trust is your whole business.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CTA ================= -->
+  <section>
+    <div class="cta">
+      <p class="eyebrow">Ready to actually run them?</p>
+      <h2>The full course is in one place — the Meta Ads Mastery Playbook</h2>
+      <p>This free guide is the map. The <strong>Playbook</strong> is the entire course — <strong>13 modules</strong> that take you from zero to running &amp; scaling ads yourself, no agency and no calls. Updated for Meta's 2026 AI. Inside:</p>
+      <ul class="modules">
+        <li><b>The 60-minute setup + how the ad auction really works</b> — the strategy agencies charge monthly for.</li>
+        <li><b>Audiences, budget &amp; bidding masterclass</b> — learning phase, scaling, retargeting funnels.</li>
+        <li><b>The AI Prompt Pack</b> — 12 copy-paste prompts that plan campaigns, write ads &amp; read your results.</li>
+        <li><b>Fill-in worksheets, swipe files, niche recipes &amp; a 90-day plan</b> — the whole system, done for you.</li>
+      </ul>
+      <div class="btnrow">
+        <a class="btn" href="https://instagram.com/techwithgul.ai">Get the Playbook — Rs 5,000 →</a>
+        <a class="btn-alt" href="https://instagram.com/techwithgul.ai">DM me “<b>ADS</b>” on Instagram to grab it</a>
+      </div>
+      <p style="font-size:13.5px;color:var(--muted);margin-top:14px">One-time <b>Rs 5,000</b> · the complete 13-module course as an instant PDF, yours to keep forever.</p>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="foot">
+    <div class="fbrand">
+      <span class="brand-badge"><img src="data:image/png;base64,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" alt="TechWithGul logo"></span>
+      <b>TechWithGul</b>
+    </div>
+    <p>Made for business owners who'd rather own the skill than rent it. Follow <b>@techwithgul.ai</b> for more.</p>
+    <p style="font-size:12.5px;opacity:.8">Meta occasionally renames buttons and moves menus — the <em>structure</em> in this guide (Campaign → Ad Set → Ad) stays the same. If a label looks different, the layer it belongs to won't have changed.</p>
+  </footer>
+
+</div>
+</div>
+
+<script>
+  (function(){
+    var prog = document.getElementById('prog');
+    if(!prog) return;
+    var ticking = false;
+    function upd(){
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      var p = max > 0 ? (h.scrollTop || document.body.scrollTop) / max : 0;
+      prog.style.width = (p*100).toFixed(1) + '%';
+      ticking = false;
+    }
+    window.addEventListener('scroll', function(){
+      if(!ticking){ window.requestAnimationFrame(upd); ticking = true; }
+    }, {passive:true});
+    upd();
+  })();
+</script>
+
+</body></html>
