@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meta Muse Can Run Your Errands. One Seller Found Out It Can Also Share Your Address.</title><meta name="description" content="Meta launched Muse on 8 September 2026. Here&#x27;s what it does, how it works under the hood, three stories from real users, and the setup I&#x27;d use before giving it access to anything that matters."><meta name="author" content="Gul Jabeen">
+<meta property="og:type" content="article"><meta property="og:title" content="Meta Muse Can Run Your Errands. One Seller Found Out It Can Also Share Your Address."><meta property="og:description" content="Meta launched Muse on 8 September 2026. Here&#x27;s what it does, how it works under the hood, three stories from real users, and the setup I&#x27;d use before giving it access to anything that matters.">
+<meta property="og:image" content="https://guljabeen.github.io/TWG-AgentKit/articles/meta-muse/images/01-hero.jpg"><meta name="twitter:card" content="summary_large_image">
+<style>body{margin:0;background:#fbfaf7;color:#1b1d23;font:19px/1.7 Georgia,'Times New Roman',serif}
+main{max-width:720px;margin:0 auto;padding:48px 20px 80px}
+h1{font:800 40px/1.15 -apple-system,'Helvetica Neue',Arial,sans-serif;margin:0 0 12px}
+.subtitle{font:400 22px/1.45 -apple-system,'Helvetica Neue',Arial,sans-serif;color:#555b66;margin:0 0 28px}
+h2,h3{font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;line-height:1.25} h2{font-size:28px;margin-top:44px} h3{font-size:22px}
+figure{margin:28px 0} figure img{width:100%;height:auto;border-radius:10px;display:block}
+figcaption{font:14px/1.4 -apple-system,Arial,sans-serif;color:#6b7280;text-align:center;margin-top:8px}
+blockquote{border-left:4px solid #e8177a;margin:20px 0;padding:4px 18px;color:#333} hr{border:0;border-top:1px solid #e5e2dc;margin:36px 0}
+a{color:#1a73e8}</style></head><body><main>
+<h1>Meta Muse Can Run Your Errands. One Seller Found Out It Can Also Share Your Address.</h1><p class="subtitle">Meta launched Muse on 8 September 2026. Here&#x27;s what it does, how it works under the hood, three stories from real users, and the setup I&#x27;d use before giving it access to anything that matters.</p>
+<figure><img src="https://guljabeen.github.io/TWG-AgentKit/articles/meta-muse/images/01-hero.jpg" alt="Meta Muse thumbnail: It shared his address" loading="lazy"></figure>
+
+<p>▶ <strong>Watch the full video on YouTube:</strong> Meta Muse Is Managing People's Lives… But Something Went Wrong [LINK — to be added]
+▶ <strong>Watch the short version (Instagram reel):</strong> [LINK — to be added]</p>
+<hr />
+<h2>TL;DR</h2>
+<ul>
+<li><strong>Meta Muse is an AI agent, not a chatbot.</strong> You give it a goal, and it plans the steps and does the work: it opens websites, fills forms, books things, and keeps working after you close the app.</li>
+<li><strong>It runs on its own computer in the cloud.</strong> Meta calls it Muse Secure VM, a virtual machine with its own browser and workspace. A separate guard called <strong>Sentinel</strong> has to approve anything it sends to the internet.</li>
+<li><strong>It asks before sensitive actions,</strong> like sending an email or making a purchase, and it keeps an audit trail of what it did.</li>
+<li><strong>Real users are impressed and a little scared.</strong> One Reddit user says it books restaurants and haircuts and sets its own follow-up reminders. An AP report describes a seller whose Muse accepted an offer and shared his home address with a buyer, without his knowledge. Meta traced it to an "always allow" permission he'd granted earlier.</li>
+<li><strong>My rule: start with low-risk tasks, read every permission, and ask three questions before you connect anything.</strong> The step-by-step setup is below.</li>
+</ul>
+<hr />
+<h2>My life needs an assistant</h2>
+<p>Who decided that being an adult means managing about 500 things every single day?</p>
+<p>I have a full-time job, a toddler, meetings, groceries, appointments and emails. And somehow I'm also supposed to remember when the toothpaste is running out. Some days I genuinely wish I could hire another version of myself.</p>
+<p>So when Meta announced an AI agent that can book, plan, shop and even negotiate a bill for you, I paid attention. Then I started reading what actual users were saying. One reviewer called it helpful and scary at the same time. One person's agent set itself a reminder to follow up on a booking. And one person's agent shared his home address with a stranger during a sale.</p>
+<p>This article covers what Meta Muse actually does, how it works, what real people are experiencing, and whether I'd trust it with my life. I work with AI every day, and I build AI products, so I'll also share the questions I ask before I let any agent touch my accounts.</p>
+<hr />
+<h2>What is Meta Muse?</h2>
+<p>Meta introduced Muse on <strong>8 September 2026</strong> and calls it "a secure, private personal AI agent". In Meta's own words: <em>"It doesn't just answer questions, it actually does the work."</em></p>
+<p>The simplest way I can explain it is this. Think of ChatGPT as someone you can ask for help. They give you advice, a list, a plan, and then you still have to go and do it yourself.</p>
+<p>Now imagine giving that assistant access to tools: a browser, your email, your calendar, a checkout. Now it can go and complete the task. That's the idea behind Muse.</p>
+<figure><img src="https://guljabeen.github.io/TWG-AgentKit/articles/meta-muse/images/02-chatgpt-vs-agent.jpg" alt="A chatbot answers. An agent gets tools." loading="lazy"><figcaption>A chatbot answers you. An agent gets tools and acts. Still from my YouTube video.</figcaption></figure>
+
+<p>You don't need to explain every step. You tell it what you want to achieve, and it works out how to approach the task. Meta describes it like this: once a person shares a goal, Muse <em>"helps them develop a personalized plan and coordinate their time and resources, then advances the work on its own."</em></p>
+<h3>A concrete example</h3>
+<p>Instead of asking, <em>"How should I organize my son's birthday party?"</em>, I could say:</p>
+<blockquote>
+<p>Help me plan a dinosaur-themed birthday party for 30 people. Find decoration options, create a shopping list, and organize everything by budget.</p>
+</blockquote>
+<figure><img src="https://guljabeen.github.io/TWG-AgentKit/articles/meta-muse/images/03-goal-prompt.jpg" alt="The goal-style prompt for a dinosaur-themed birthday party" loading="lazy"><figcaption>My example of a goal-style prompt, not a Meta demo.</figcaption></figure>
+
+<p>Muse could then research the options, help build the plan and work through supported tasks using the services you've connected. Meta's own examples are similar: suggesting a menu for a dinner party, remembering friends' dietary restrictions before sending invites, turning a recipe reel you saved on Instagram into a grocery list, booking travel, and <em>"selling a car for more, lowering a bill"</em>.</p>
+<p>Now that sounds useful. I have one condition, though: please don't order 200 dinosaur balloons without asking me first.</p>
+<hr />
+<h2>How Muse actually works</h2>
+<p>Engineering hat on. I promise this won't turn into a computer-science lecture, but three pieces matter if you want to understand the risks.</p>
+<h3>1. Its own computer: Muse Secure VM</h3>
+<p>Muse launched on an AI model Meta calls <strong>Muse Spark</strong>. (Meta said on 12 October that newer "Muse Wonder" models will soon power Muse too, rolling out first to subscribers.)</p>
+<p>The bigger idea is where Muse works. Meta built something called <strong>Muse Secure VM</strong>. VM stands for virtual machine. Meta's launch post says: <em>"Muse runs on Muse Secure VM, a dedicated, virtual machine (VM) that houses both the agent and a person's data."</em></p>
+<figure><img src="https://guljabeen.github.io/TWG-AgentKit/articles/meta-muse/images/04-secure-vm.jpg" alt="Meta&#x27;s description of Muse Secure VM" loading="lazy"><figcaption>Source: Meta Newsroom, 8 Sept 2026.</figcaption></figure>
+
+<p>Imagine giving your AI assistant its own computer, its own browser and its own workspace. Meta's safety team puts it this way: <em>"You and your Muse share your own dedicated computer in the cloud… Each Virtual Machine(VM) is an isolated linux box with a browser and enough storage, CPU, and memory to do real work."</em></p>
+<figure><img src="https://guljabeen.github.io/TWG-AgentKit/articles/meta-muse/images/05-own-computer.jpg" alt="Your own dedicated computer in the cloud" loading="lazy"><figcaption>Source: Meta AI Research, &quot;How We Built Safety Into Muse&quot;, 8 Sept 2026.</figcaption></figure>
+
+<p>So when you ask Muse to research a holiday, it can open websites, look through options and work across several steps. It can also connect to supported apps, including your email and calendar.</p>
+<h3>2. A guard at the door: Sentinel</h3>
+<p>This is the part I find most interesting as an engineer. Meta built a separate protective system called <strong>Sentinel</strong> that checks actions before they reach the internet:</p>
+<blockquote>
+<p>"A separate Sentinel agent runs on that same machine, kept apart from Muse at the system level. Nothing Muse does reaches the internet unless the Sentinel approves it, and it asks the person for permission when needed."</p>
+</blockquote>
+<figure><img src="https://guljabeen.github.io/TWG-AgentKit/articles/meta-muse/images/06-sentinel.jpg" alt="Nothing reaches the internet unless Sentinel approves" loading="lazy"><figcaption>How the pieces fit: Muse works inside its own computer. Sentinel stands between it and the internet.</figcaption></figure>
+
+<p>Think of it as a security guard supervising your AI assistant. The safety post is even blunter: <em>"Muse proposes actions, but only Sentinel can grant permission to perform action."</em></p>
+<figure><img src="https://guljabeen.github.io/TWG-AgentKit/articles/meta-muse/images/07-sentinel-decides.jpg" alt="Muse proposes. Sentinel decides." loading="lazy"><figcaption>Source: Meta AI Research.</figcaption></figure>
+
+<h3>3. Approvals and an audit trail</h3>
+<p>For sensitive actions, Muse is designed to ask you first. Meta says <em>"Muse checks with the person before sensitive actions like sending an email or making a purchase."</em> You can also review what it did: Meta promises <em>"a complete audit trail of everything it has done and plans to do"</em>, and you can watch it work in the browser and take over at any time.</p>
+<p><strong>But this is important: permission settings matter a lot.</strong> Giving your AI permission to act is not the same as giving it good judgment. Meta's own safety post says it plainly: <em>"Muse can and will still make mistakes."</em> We'll come back to that, because the most uncomfortable story below comes down to a single setting.</p>
+<hr />
+<h2>What real people are experiencing</h2>
+<p>Muse has been out for about six weeks. I went through reviews and people's experiences online, and the results are a mixture of impressive, useful and slightly terrifying.</p>
+<h3>Story 1: "Helpful and scary at the same time"</h3>
+<p>A Wall Street Journal personal-tech columnist, Nicole Nguyen, tried Muse and published her review on 28 September under a headline that sums up most of what I read: <em>"I Tried Meta's Muse AI Agent. It's Helpful and Scary at the Same Time."</em> The subhead names the trade-off: <em>"The more data you hand over, the more this talented personal assistant can do for you."</em></p>
+<p>That's the core tension of every personal agent. The more it knows, the more useful it becomes, and the more it can get wrong. (The full review sits behind WSJ's paywall, so I'm only quoting what's public.)</p>
+<h3>Story 2: The AI that follows up</h3>
+<p>On 12 October, a Reddit user posted in r/AI_Agents after two weeks with Muse: <em>"I asked it to book me restaurants, movie tickets, haircut appointments, etc."</em></p>
+<p>What impressed them was this:</p>
+<blockquote>
+<p>"booking is not open yet, so it just sets a reminder for itself to followup at a later time"</p>
+</blockquote>
+<figure><img src="https://guljabeen.github.io/TWG-AgentKit/articles/meta-muse/images/08-reddit-reminder.jpg" alt="A Reddit user&#x27;s account of Muse setting itself a reminder" loading="lazy"><figcaption>Source: Reddit, r/AI_Agents, 12 Oct 2026 (self-reported).</figcaption></figure>
+
+<p>Now that is interesting. We're moving beyond an AI that only responds when you ask a question, towards one that can remember an unfinished goal and come back to it later. Of course, this is one person's account, not a controlled test.</p>
+<h3>Story 3: The Marketplace address</h3>
+<p>This one genuinely made me uncomfortable.</p>
+<p>According to an Associated Press report from 19 October, Matt Robb, a Toronto-based content creator, wanted to sell his computer keyboard on Facebook Marketplace. As an experiment, he put Muse in charge of the listing. Muse struck a deal on its own and shared his home address after agreeing to a pickup, all without his knowledge. He had assumed the agent would check with him before sharing that information or accepting offers.</p>
+<figure><img src="https://guljabeen.github.io/TWG-AgentKit/articles/meta-muse/images/09-ap-report.jpg" alt="The AP report on Muse accepting an offer and sharing a home address" loading="lazy"><figcaption>Source: Associated Press, 19 Oct 2026, via The Washington Times.</figcaption></figure>
+
+<p>Imagine asking AI to sell your keyboard, and suddenly it's telling a stranger where you live. No, thank you!</p>
+<p>Here's the part that matters most. Meta told him the address sharing came down to <strong>"always allow" permissions</strong> he had granted when he first gave Muse access to his Marketplace profile, where his pickup address was part of a broader template. Meta also acknowledged a separate pricing error, in which Muse seemed ready to accept less than his minimum price.</p>
+<p>If Meta's explanation is right, Muse did what it was technically permitted to do, and that wasn't what he intended.</p>
+<hr />
+<h2>Can you trust it? The 3 questions I always ask</h2>
+<p><strong>The more useful an AI agent becomes, the more information it may need.</strong> Your emails, your calendar, your shopping preferences, maybe your contacts.</p>
+<p>As someone who builds AI products, I ask three questions before I trust any agent, Muse included:</p>
+<ol>
+<li><strong>What can this agent access?</strong> Every connected app is a door. Count the doors.</li>
+<li><strong>What can it do without asking me?</strong> This is the question the Marketplace story is about. "Always allow" is a decision you're making ahead of time, for every future situation you can't see yet.</li>
+<li><strong>Can I see exactly what it has done?</strong> If I can't audit it, I can't trust it.</li>
+</ol>
+<figure><img src="https://guljabeen.github.io/TWG-AgentKit/articles/meta-muse/images/10-three-questions.jpg" alt="What can it do without asking me?" loading="lazy"><figcaption>Question 2, with the AP paragraph about &quot;always allow&quot; permissions.</figcaption></figure>
+
+<p>To be fair to Meta, its launch post covers a lot of this:</p>
+<ul>
+<li><strong>Credentials:</strong> <em>"Muse has no visibility into people's passwords or payment methods. Any credentials a person shares with Muse go into secure storage, so Muse can use them without seeing them."</em></li>
+<li><strong>Connected apps:</strong> <em>"People choose which apps Muse connects to and exactly how much access it gets."</em> You can change access or disconnect a service at any time.</li>
+<li><strong>Activity:</strong> the audit trail I mentioned above.</li>
+<li><strong>Ads:</strong> Meta says <em>"Muse doesn't share a person's conversations or the data in their VM with Meta's ad systems."</em> Its own safety post adds a nuance worth knowing: what Muse does for you on the web, like a reservation or a product it finds, can still influence the ads you see.</li>
+</ul>
+<p>But that doesn't mean every privacy concern magically disappears.</p>
+<hr />
+<h2>How to try Meta Muse safely: step by step</h2>
+<p>If you want to explore it yourself, here's the process I'd follow.</p>
+<ol>
+<li><strong>Check availability.</strong> Meta says Muse <em>"is rolling out in the US on iOS, Android, and muse.ai"</em>. If you're outside the US, availability may vary.</li>
+<li><strong>Get the official app only.</strong> Go to muse.ai or the official Muse app in your app store. Don't install lookalike "Muse AI" apps.</li>
+<li><strong>Know the pricing model.</strong> Meta says it's <em>"free for most of what people need, with subscription plans for people who want to do more."</em> Check the current plans in the app before you rely on it.</li>
+<li><strong>Start with one low-risk task and no connections.</strong> For example:</li>
+</ol>
+<blockquote>
+<p>Help me plan five easy family dinners for next week. Create a grocery list and group everything by category.</p>
+</blockquote>
+<ol start="5">
+<li><strong>Read the plan before it acts.</strong> A good agent shows you its steps. If a step surprises you, stop and ask why.</li>
+<li><strong>Connect one service at a time.</strong> When you connect email, Meta says you choose <em>"whether it reads their mail or can also send on their behalf."</em> Start with read-only.</li>
+<li><strong>Never tick "always allow" on anything involving money, your address, or messages to other people.</strong> Keep approval on for purchases, emails and anything public.</li>
+<li><strong>Review the activity history after each task</strong> for the first week. You're learning how it behaves, the same way you'd watch a new assistant's first few days.</li>
+<li><strong>Widen access only when it's earned.</strong> If it has done ten low-risk tasks well, give it the next level. Not before.</li>
+</ol>
+<figure><img src="https://guljabeen.github.io/TWG-AgentKit/articles/meta-muse/images/11-low-risk.jpg" alt="Start with low-risk tasks" loading="lazy"><figcaption>Research a holiday, organize an event, make a grocery list. That&#x27;s where I&#x27;d start.</figcaption></figure>
+
+<h3>My low-risk vs review-every-step checklist</h3>
+<p><strong>Fine to start with:</strong>
+- Researching a holiday or comparing options
+- Organizing an event or a family schedule
+- Making a grocery list from a saved recipe
+- Drafting (not sending) an email</p>
+<p><strong>Review every step:</strong>
+- Anything that spends money
+- Sensitive emails, or any message sent in your name
+- Sharing personal information: your address, phone number, documents
+- Anything on a marketplace, where a stranger is on the other side</p>
+<p>And please don't connect your entire digital life just because an AI has a pretty interface.</p>
+<figure><img src="https://guljabeen.github.io/TWG-AgentKit/articles/meta-muse/images/12-start-small.jpg" alt="My recommendation: start small" loading="lazy"><figcaption>My recommendation, in one line: start small.</figcaption></figure>
+
+<hr />
+<h2>Common mistakes and quick answers</h2>
+<ul>
+<li><strong>"It asks before sensitive actions, so I'm safe."</strong> Only if you haven't told it not to ask. "Always allow" switches off the very check you're relying on.</li>
+<li><strong>Connecting everything on day one.</strong> Every connection widens what can go wrong. Add one at a time.</li>
+<li><strong>Skipping the plan.</strong> Agents fail quietly: the wrong item, the wrong date, a price below your minimum. Read the plan and the activity log.</li>
+<li><strong>Expecting every website to cooperate.</strong> Sometimes they won't. Amazon, for example, blocked Muse from shopping on amazon.com from 20 September, calling it an unauthorized AI agent under its Conditions of Use. Agents depend on sites letting them in.</li>
+<li><strong>Is Muse retraining on my data?</strong> Meta's privacy claims are about ads and credentials. Read the in-app privacy settings for your own account before you connect anything personal.</li>
+<li><strong>Is it available outside the US?</strong> Meta's launch post says it's rolling out in the US.</li>
+</ul>
+<hr />
+<h2>My take</h2>
+<p>You know what excites me most about Muse? A grocery list isn't new. We've had tools that do that for years.</p>
+<p>What's new is AI that understands a goal, plans the steps, uses tools and follows through. That's a much bigger shift.</p>
+<p>But here's where I think we need to be realistic. We're not at the point where you can hand your entire life to an AI and forget about it. Sometimes it will make mistakes. Sometimes websites won't cooperate. And sometimes it might do what you technically permitted, but not what you actually intended.</p>
+<p>So for me, the future of agents is about reducing the repetitive work humans have to do, while the judgment stays with us. If AI can give me even one extra hour to spend with my family, go to the gym, or simply enjoy my coffee while it's still hot, I'm interested.</p>
+<p>Now I want to know what you think. Would you trust an AI agent with your personal life? And if you had Muse today, what's the first task you'd give it? Mine would be organizing all those saved Instagram recipes I never actually cook.</p>
+<hr />
+<p>If you want <strong>five practical tasks you can try with personal AI agents, including prompts you can copy</strong>, comment <strong>MUSE</strong> on the reel or the YouTube video and I'll send them to you.</p>
+<p>I'm Gul — Director of Engineering at Hyly and founder of Tech With Gul, working with AI every day and making it easier for everyone to understand and use. If this was useful, follow me here, on YouTube at <a href="https://www.youtube.com/@techwithgul.ai-00">@techwithgul.ai-00</a> and on Instagram at <a href="https://www.instagram.com/techwithgul.ai/">@techwithgul.ai</a>.</p>
+<hr />
+<h2>References</h2>
+<p>Primary sources:</p>
+<ul>
+<li>Meta Newsroom, "Introducing Muse: The World's First Personal AI Agent Built for Everyone" (8 Sept 2026; Secure VM, Sentinel, approvals, audit trail, credentials, connected apps, ads, rollout, pricing model): https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/</li>
+<li>Meta AI Research, "How We Built Safety Into Muse" (Tarek Sheasha, 8 Sept 2026; dedicated computer in the cloud, Sentinel as the sole permission authority, "Muse can and will still make mistakes", ads nuance): https://research.meta.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse</li>
+<li>Meta Newsroom, "Introducing Muse Wonder" (12 Oct 2026): https://about.fb.com/news/2026/10/introducing-muse-wonder-models/</li>
+</ul>
+<p>User stories:</p>
+<ul>
+<li>The Wall Street Journal, Nicole Nguyen, "I Tried Meta's Muse AI Agent. It's Helpful and Scary at the Same Time." (28 Sept 2026; headline and subhead only): https://www.wsj.com/tech/personal-tech/meta-muse-ai-agent-review-ab956101</li>
+<li>Reddit, r/AI_Agents, "Two weeks into using Meta Muse I'm asking - how is this not AGI?" (12 Oct 2026, self-reported): https://www.reddit.com/r/AI_Agents/comments/1x44kpr/two_weeks_into_using_meta_muse_im_asking_how_is/</li>
+<li>Associated Press, Wyatte Grantham-Philips (19 Oct 2026), as syndicated by The Washington Times: https://www.washingtontimes.com/news/2026/oct/19/artificial-intelligence-good-personal-information-share-raises/</li>
+</ul>
+<p>Further reading:</p>
+<ul>
+<li>GeekWire on Amazon blocking Muse (Sept 2026): https://www.geekwire.com/2026/amazon-blocks-metas-muse-ai-assistant-in-new-standoff-over-agentic-shopping/</li>
+</ul>
+<blockquote>
+<p>Images: stills from my YouTube video. Meta, AP and Reddit text in the images are crops of the original pages, credited on each image. The birthday-party prompt and the Marketplace chat in the thumbnail are my own illustrations.</p>
+</blockquote>
+<hr />
+<p><strong>Tags:</strong> Artificial Intelligence · AI Agents · Meta · Privacy · Productivity · Technology · Tech With Gul</p>
+</main></body></html>
